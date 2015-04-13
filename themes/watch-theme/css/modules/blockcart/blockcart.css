@@ -99,19 +99,22 @@
   color: #515151;
 }
 .cart_block .cart-images {
-  margin-right: 20px;
+  margin-right: 10px;
+  float: left;
 }
 .cart_block .cart-info {
   overflow: hidden;
   position: relative;
+  float: left;
 }
 .cart_block .cart-info .product-name {
-  font-size: 13px;
   max-height: 40px;
+  font-size: 13px;
 }
 .cart_block .cart-info .product-name a {
   font-size: 13px;
   display: inline-block;
+  height: auto;
   line-height: normal;
 }
 .cart_block .cart-info .quantity-formated {
@@ -127,9 +130,9 @@
 .cart_block dt {
   font-weight: normal;
   overflow: hidden;
-  padding: 20px 10px 16px 10px;
+  padding: 10px 10px 10px 10px;
   position: relative;
-  text-align: center;
+  text-align: left;
 }
 .cart_block dd {
   position: relative;
@@ -151,7 +154,7 @@
 .cart_block .cart-prices {
   border-top: 1px solid #d6d4d4;
   font-weight: bold;
-  padding: 10px 20px 22px 20px;
+  padding: 10px 15px 10px 15px;
 }
 .cart_block .cart-prices .cart-prices-line {
   overflow: hidden;
@@ -160,10 +163,14 @@
 }
 .cart_block .cart-prices .cart-prices-line.last-line {
   border: none;
+  width: 100%;
+}
+.cart_block .cart-prices .cart-prices-line.last-line span:last-child {
+  float:left;
 }
 .cart_block .cart-buttons {
   overflow: hidden;
-  padding: 20px 20px 10px 20px;
+  padding: 15px 15px 5px 15px;
   margin: 0;
   background: #f6f6f6;
 }
@@ -177,6 +184,8 @@
 .cart_block .cart-buttons a#button_order_cart {
   margin-right: 0;
   border: none;
+  line-height: normal;
+  height: auto;
 }
 .cart_block .cart-buttons a#button_order_cart span {
   padding: 7px 0;
@@ -242,9 +251,12 @@
 #header .cart_block .product-atributes {
   padding-bottom: 10px;
   font-size: 11px;
+  line-height: normal;
+  max-height: 40px;
 }
 #header .cart_block .product-atributes a {
   color: #9c9b9b;
+  line-height: normal;
 }
 #header .cart_block .product-atributes a:hover {
   color: white;

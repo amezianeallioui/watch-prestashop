@@ -459,10 +459,6 @@ h1, .h1 {
   font-size: 33px;
 }
 
-h2, .h2 {
-  font-size: 27px;
-}
-
 h3, .h3 {
   font-size: 23px;
 }
@@ -519,10 +515,6 @@ ol ol {
   display: inline-block;
   padding-left: 5px;
   padding-right: 5px;
-}
-
-dl {
-  margin-bottom: 18px;
 }
 
 dt,
@@ -7014,7 +7006,6 @@ textarea {
 #columns {
   position: relative;
   padding-bottom: 50px;
-  padding-top: 15px;
 }
 
 #index .tab-content {
@@ -7030,7 +7021,6 @@ header {
   z-index: 1;
   position: relative;
   background: white;
-  padding-bottom: 15px;
 }
 header .banner {
   background: black;
@@ -7043,7 +7033,7 @@ header .nav {
   vertical-align: middle;
   height: auto;
   padding:0;
-  margin:0;
+  margin:10px 0;
 }
 header .nav .topHeadMenu a {
   color: #333;
@@ -10580,4 +10570,12 @@ div.star.star_hover:after {
 
 header .nav .topHeadMenu a:hover {
   color: blue;
+}
+
+
+.last-line {
+}
+
+h2, .h2 {
+  font-size: 27px;
 }

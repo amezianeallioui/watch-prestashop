@@ -1,6 +1,6 @@
 <?php
 /*
-* 2007-2014 PrestaShop
+* 2007-2015 PrestaShop
 *
 * NOTICE OF LICENSE
 *
@@ -19,7 +19,7 @@
 * needs please refer to http://www.prestashop.com for more information.
 *
 *  @author PrestaShop SA <contact@prestashop.com>
-*  @copyright  2007-2014 PrestaShop SA
+*  @copyright  2007-2015 PrestaShop SA
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 */
@@ -45,7 +45,7 @@ class HomeSlider extends Module
 	{
 		$this->name = 'homeslider';
 		$this->tab = 'front_office_features';
-		$this->version = '1.4.5';
+		$this->version = '1.4.8';
 		$this->author = 'PrestaShop';
 		$this->need_instance = 0;
 		$this->secure_key = Tools::encrypt($this->name);
@@ -688,7 +688,7 @@ class HomeSlider extends Module
 		$id_lang = $this->context->language->id;
 
 		return Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS('
-			SELECT hs.`id_homeslider_slides` as id_slide, hssl.`image`, hss.`position`, hss.`active`, hssl.`title`,
+			SELECT hs.`id_homeslider_slides` as id_slide, hss.`position`, hss.`active`, hssl.`title`,
 			hssl.`url`, hssl.`legend`, hssl.`description`, hssl.`image`
 			FROM '._DB_PREFIX_.'homeslider hs
 			LEFT JOIN '._DB_PREFIX_.'homeslider_slides hss ON (hs.id_homeslider_slides = hss.id_homeslider_slides)
@@ -783,25 +783,29 @@ class HomeSlider extends Module
 						'type' => 'file_lang',
 						'label' => $this->l('Select a file'),
 						'name' => 'image',
+						'required' => true,
 						'lang' => true,
-						'desc' => $this->l(sprintf('Maximum image size: %s.', ini_get('upload_max_filesize')))
+						'desc' => sprintf($this->l('Maximum image size: %s.'), ini_get('upload_max_filesize'))
 					),
 					array(
 						'type' => 'text',
 						'label' => $this->l('Slide title'),
 						'name' => 'title',
+						'required' => true,
 						'lang' => true,
 					),
 					array(
 						'type' => 'text',
 						'label' => $this->l('Target URL'),
 						'name' => 'url',
+						'required' => true,
 						'lang' => true,
 					),
 					array(
 						'type' => 'text',
 						'label' => $this->l('Caption'),
 						'name' => 'legend',
+						'required' => true,
 						'lang' => true,
 					),
 					array(
@@ -1027,18 +1031,18 @@ class HomeSlider extends Module
 
 		if ($mode == 'edit')
 			return '<p class="alert alert-danger">'.
-							$this->l(sprintf('You can only edit this slide from the shop(s) context: %s', $shop_contextualized_name)).
+							sprintf($this->l('You can only edit this slide from the shop(s) context: %s'), $shop_contextualized_name).
 					'</p>';
 		else
 			return '<p class="alert alert-danger">'.
-							$this->l(sprintf('You cannot add slides from a "All Shops" or a "Group Shop" context')).
+							sprintf($this->l('You cannot add slides from a "All Shops" or a "Group Shop" context')).
 					'</p>';
 	}
 
 	private function getShopAssociationError($id_slide)
 	{
 		return '<p class="alert alert-danger">'.
-						$this->l(sprintf('Unable to get slide shop association information (id_slide: %d)', (int)$id_slide)).
+						sprintf($this->l('Unable to get slide shop association information (id_slide: %d)'), (int)$id_slide).
 				'</p>';
 	}
 
@@ -1050,9 +1054,9 @@ class HomeSlider extends Module
 		if (Shop::isFeatureActive())
 		{
 			if (Shop::getContext() == Shop::CONTEXT_SHOP)
-				$shop_info = $this->l(sprintf('The modifications will be applied to shop: %s', $this->context->shop->name));
+				$shop_info = sprintf($this->l('The modifications will be applied to shop: %s'), $this->context->shop->name);
 			else if (Shop::getContext() == Shop::CONTEXT_GROUP)
-				$shop_info = $this->l(sprintf('The modifications will be applied to this group: %s', Shop::getContextShopGroup()->name));
+				$shop_info = sprintf($this->l('The modifications will be applied to this group: %s'), Shop::getContextShopGroup()->name);
 			else
 				$shop_info = $this->l('The modifications will be applied to all shops and shop groups');
 
