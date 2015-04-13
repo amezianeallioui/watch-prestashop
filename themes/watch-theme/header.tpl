@@ -86,18 +86,15 @@
 										<img class="logo img-responsive" src="{$logo_url}" alt="{$shop_name|escape:'html':'UTF-8'}"{if isset($logo_image_width) && $logo_image_width} width="{$logo_image_width}"{/if}{if isset($logo_image_height) && $logo_image_height} height="{$logo_image_height}"{/if}/>
 									</a>
 								</div>
-								<nav class="col-sm-6 col-sm-offset-4">
-									<div class="txtRight">
+								<nav class="col-sm-10">
+									<div class="txtRight row topHeadMenu">
 										{hook h="displayNav"}
 									</div>
+
+									<div class="txtRight row">
+										{if isset($HOOK_TOP)}{$HOOK_TOP}{/if}
+									</div>
 								</nav>
-							</div>
-						</div>
-					</div>
-					<div>
-						<div class="container">
-							<div class="row">
-								{if isset($HOOK_TOP)}{$HOOK_TOP}{/if}
 							</div>
 						</div>
 					</div>

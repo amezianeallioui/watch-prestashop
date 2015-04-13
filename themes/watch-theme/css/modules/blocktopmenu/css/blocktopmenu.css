@@ -1,4 +1,7 @@
 #block_top_menu {
-  padding-top: 25px; }
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 13px;
+}
 
 /*# sourceMappingURL=blocktopmenu.css.map */

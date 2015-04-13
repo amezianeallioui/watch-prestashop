@@ -25,7 +25,7 @@
 
 <div id="contact_block" class="block">
 	<h4 class="title_block">
-		{l s='Contact Us' mod='blockcontact'}
+		{l s='Contact us' mod='blockcontact'}
 	</h4>
 	<div class="block_content clearfix">
 		<p>

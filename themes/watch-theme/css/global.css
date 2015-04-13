@@ -4275,9 +4275,7 @@ button.close {
 }
 
 .clearfix:before, .clearfix:after {
-  content: " ";
   /* 1 */
-  display: table;
   /* 2 */
 }
 .clearfix:after {
@@ -7047,13 +7045,14 @@ header .nav {
   padding:0;
   margin:0;
 }
-header .nav a {
-  line-height: 85px;
+header .nav .topHeadMenu a {
   color: #333;
   text-transform: uppercase;
-  padding-top: 0;
   padding-bottom: 0;
   font-size: 14px;
+  padding-top: 0;
+  line-height: 88px;
+  height: 88px;
 }
 header .nav .row {
   margin: 0px;
@@ -7661,7 +7660,6 @@ table.table_block td {
 
 .product-name {
   font-size: 17px;
-  line-height: 23px;
   color: #3a3939;
   margin-bottom: 0;
 }
@@ -10578,4 +10576,8 @@ div.star.star_hover:after {
 }
 .btn-pinterest:hover i {
   color: white;
+}
+
+header .nav .topHeadMenu a:hover {
+  color: blue;
 }

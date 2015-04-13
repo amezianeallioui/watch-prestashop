@@ -19,9 +19,8 @@
 }
 
 #contact-link {
+  vertical-align: middle;
   display: inline-block;
-  vertical-align: baseline;
-  height: 89px;
 }
 @media (max-width: 479px) {
   #contact-link {

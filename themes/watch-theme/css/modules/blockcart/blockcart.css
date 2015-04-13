@@ -3,8 +3,8 @@
 ********************************************************************/
 #header .shopping_cart {
   position: relative;
+  vertical-align: middle;
   display: inline-block;
-  vertical-align: baseline;
 }
 #header .shopping_cart > a:first-child:after {
   content: "\f0d7";
@@ -99,22 +99,20 @@
   color: #515151;
 }
 .cart_block .cart-images {
-  float: left;
   margin-right: 20px;
 }
 .cart_block .cart-info {
   overflow: hidden;
   position: relative;
-  padding-right: 20px;
 }
 .cart_block .cart-info .product-name {
-  padding-bottom: 5px;
-  margin-top: -4px;
+  font-size: 13px;
+  max-height: 40px;
 }
 .cart_block .cart-info .product-name a {
   font-size: 13px;
-  line-height: 18px;
   display: inline-block;
+  line-height: normal;
 }
 .cart_block .cart-info .quantity-formated {
   display: inline-block;
@@ -129,8 +127,9 @@
 .cart_block dt {
   font-weight: normal;
   overflow: hidden;
-  padding: 20px 10px 16px 20px;
+  padding: 20px 10px 16px 10px;
   position: relative;
+  text-align: center;
 }
 .cart_block dd {
   position: relative;
