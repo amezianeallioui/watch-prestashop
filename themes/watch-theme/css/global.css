@@ -7048,12 +7048,12 @@ header .nav {
   margin:0;
 }
 header .nav a {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-transform: uppercase;
-  font-size: 12px;
-  line-height: 32px;
+  line-height: 85px;
   color: #333;
+  text-transform: uppercase;
+  padding-top: 0;
+  padding-bottom: 0;
+  font-size: 14px;
 }
 header .nav .row {
   margin: 0px;

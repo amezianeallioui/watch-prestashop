@@ -5,7 +5,6 @@
   position: relative;
   display: inline-block;
   vertical-align: baseline;
-  height: 48px;
 }
 #header .shopping_cart > a:first-child:after {
   content: "\f0d7";

@@ -1,8 +1,8 @@
 .header_user_info {
   display: inline-block;
   vertical-align: baseline;
-  height: 48px;
   font-size: 15px;
+  height: 89px;
 }
 .header_user_info a {
   color: white;

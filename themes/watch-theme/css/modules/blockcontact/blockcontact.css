@@ -21,7 +21,7 @@
 #contact-link {
   display: inline-block;
   vertical-align: baseline;
-  height: 48px;
+  height: 89px;
 }
 @media (max-width: 479px) {
   #contact-link {
