@@ -56,8 +56,9 @@ class MyWatch extends Module
 		//On greffe le module à quelques hook, on crée une config et on lance l'installation classique
 		// Regarde si le module a bien été installé
 		if(!parent::install() ||
-			!$this->registerHook('leftColumn') ||
-			!$this->registerHook('header') ||
+			// !$this->registerHook('home') ||
+			!$this->registerHook('centerColumn') ||
+			!$this->registerHook('nav') ||
 			!Configuration::updateValue('MYWATCH_CFG', 'my config')
 		)	
 			return false; // si non, on renvoie false
@@ -169,8 +170,8 @@ class MyWatch extends Module
 		return $helper->generateForm($fields_form);
 	}
 	
-	//methode appelée si le module est greffé à la colonne de gauche
-	public function hookDisplayLeftColumn($params)
+	//methode appelée si le module est greffé à la home (hors header et colonnes)
+	public function hookDisplayCenterColumn($params)
 	{
 		//on envoie des variables à smarty
 		$this->context->smarty->assign(array(
@@ -179,19 +180,31 @@ class MyWatch extends Module
 		)); 
 		
 		//on appel le template correspondant
-		return $this->display(__FILE__, 'display.tpl');
+		return $this->display(__FILE__, 'mywatch.tpl');
 	}
 	
-	//ici, on veut le meme comportement dans la colonne de droite
+/*	//ici, on veut le meme comportement dans la colonne de droite
 	public function hookDisplayRightColumn($params)
 	{
 		return $this->hookDisplayLeftColumn($params);
-	}
+	}*/
 	
 	//Dans le header, on injecte les css, les js, etc.
 	public function hookDisplayHeader()
 	{
 		$this->context->controller->addCSS($this->_path.'css/mywatch.css', 'all');
+	}
+
+	//Navigation -> on affiche le lien 'Ma montre' avec le bon lien
+	public function hookDisplayNav($params)
+	{
+		//on envoie des variables à smarty
+		$this->context->smarty->assign(array(
+			'my_link' => $this->context->link->getModuleLink('mywatch', 'display')
+		)); 
+		
+		//on appel le template correspondant
+		return $this->display(__FILE__, 'nav.tpl');
 	}
 }
 

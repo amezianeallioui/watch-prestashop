@@ -1,1 +1,3 @@
-<p>Je suis un joli controller tout neuf!</p>
+<p>Bienvenue sur la page principale du module !</p>
+
+{$attributes|@var_dump}

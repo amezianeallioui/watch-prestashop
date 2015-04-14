@@ -1,6 +1,18 @@
-div#monmodule_block_home p {
-	font-size: 150%;
-	font-style:italic;
+#mywatch-link{
+	vertical-align: middle;
+    display: inline-block;
 }
 
+#mywatch-link a{
 
+    /*color: #333;*/
+  	/*text-transform: uppercase;*/
+  	/*padding-bottom: 0;*/
+  	/*font-size: 14px;*/
+  	/*padding-top: 0;*/
+  	padding-left: 10px;
+	padding-right: 10px;
+  	font-weight: bold;
+	display: block;
+	cursor: pointer;
+}
