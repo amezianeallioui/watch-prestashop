@@ -23,13 +23,25 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 {if isset($HOOK_HOME_TAB_CONTENT) && $HOOK_HOME_TAB_CONTENT|trim}
+
+	<div class="row">
+		<div class="col-sm-1"></div>
+		<div class="col-sm-10 txtRecommend">
+			<h2>Nous vous recommandons</h2>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam augue sapien, malesuada vel hendrerit eu, finibus eu magna. Nunc ulamcorper et diam viverra interdum.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam augue sapien, malesuada vel hendrerit eu, finibus eu magna. Nunc ulamcorper et diam viverra interdum.</p>
+		</div>
+		<div class="col-sm-1"></div>
+	</div>
+
+	{if isset($HOOK_HOME) && $HOOK_HOME|trim}
+		<div class="clearfix">{$HOOK_HOME}</div>
+	{/if}
     {if isset($HOOK_HOME_TAB) && $HOOK_HOME_TAB|trim}
+    <div class='centerLineTitle'>
         <ul id="home-page-tabs" class="nav nav-tabs clearfix">
 			{$HOOK_HOME_TAB}
 		</ul>
+	</div>
 	{/if}
 	<div class="tab-content">{$HOOK_HOME_TAB_CONTENT}</div>
-{/if}
-{if isset($HOOK_HOME) && $HOOK_HOME|trim}
-	<div class="clearfix">{$HOOK_HOME}</div>
 {/if}

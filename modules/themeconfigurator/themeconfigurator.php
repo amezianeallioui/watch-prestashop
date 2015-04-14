@@ -1,6 +1,6 @@
 <?php
 /*
-* 2007-2014 PrestaShop
+* 2007-2015 PrestaShop
 *
 * NOTICE OF LICENSE
 *
@@ -18,10 +18,10 @@
 * versions in the future. If you wish to customize PrestaShop for your
 * needs please refer to http://www.prestashop.com for more information.
 *
-*  @author PrestaShop SA <contact@prestashop.com>
-*  @copyright  2007-2014 PrestaShop SA
-*  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
-*  International Registered Trademark & Property of PrestaShop SA
+* @author	PrestaShop SA <contact@prestashop.com>
+* @copyright	2007-2015 PrestaShop SA
+* @license	http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+* International Registered Trademark & Property of PrestaShop SA
 */
 
 if (!defined('_PS_VERSION_'))
@@ -37,7 +37,7 @@ class ThemeConfigurator extends Module
 	{
 		$this->name = 'themeconfigurator';
 		$this->tab = 'front_office_features';
-		$this->version = '1.1.8';
+		$this->version = '1.2.1';
 		$this->bootstrap = true;
 		$this->secure_key = Tools::encrypt($this->name);
 		$this->default_language = Language::getLanguage(Configuration::get('PS_LANG_DEFAULT'));
@@ -451,7 +451,7 @@ class ThemeConfigurator extends Module
 					image_w = '.(int)$image_w.',
 					image_h = '.(int)$image_h.',
 					active = '.(int)Tools::getValue('item_active').',
-					html = \''.pSQL(Tools::purifyHTML($content), true).'\'
+					html = \''.pSQL($this->filterVar($content), true).'\'
 			WHERE id_item = '.(int)Tools::getValue('item_id')
 		))
 		{
@@ -590,7 +590,7 @@ class ThemeConfigurator extends Module
 					\''.pSQL($image).'\',
 					\''.pSQL($image_w).'\',
 					\''.pSQL($image_h).'\',
-					\''.pSQL(Tools::purifyHTML($content), true).'\',
+					\''.pSQL($this->filterVar($content), true).'\',
 					1)'
 		))
 		{
@@ -748,10 +748,10 @@ class ThemeConfigurator extends Module
 
 			$desc = '<a class="btn btn-default" href="'.$url.'" onclick="return !window.open($(this).attr(\'href\'));" id="live_conf_button">'
 				.$this->l('View').' <i class="icon-external-link"></i></a><br />'
-				.$this->l('Only you can see this on your Front-Office - your visitors will not see this tool.');
+				.$this->l('Only you can see this on your front office - your visitors will not see this tool.');
 		}
 		else
-			$desc = $this->l('Only you can see this on your Front-Office - your visitors will not see this tool.');
+			$desc = $this->l('Only you can see this on your front office - your visitors will not see this tool.');
 
 		return array(
 			array(
@@ -793,7 +793,7 @@ class ThemeConfigurator extends Module
 				'label' => $this->l('Display categories as a list of products instead of the default grid-based display'),
 				'name' => 'grid_list',
 				'value' => (int)Configuration::get('PS_GRID_PRODUCT'),
-				'desc' => 'Works only for first-time users. This setting is overridden by the user\'s choice as soon as the user cookie is set.'
+				'desc' => $this->l('Works only for first-time users. This setting is overridden by the user\'s choice as soon as the user cookie is set.'),
 			),
 			array(
 				'label' => $this->l('Display top banner'),
@@ -836,5 +836,13 @@ class ThemeConfigurator extends Module
 		return Tools::getAdminToken($this->name.(int)Tab::getIdFromClassName($this->name)
 			.(is_object(Context::getContext()->employee) ? (int)Context::getContext()->employee->id :
 				Tools::getValue('id_employee')));
+	}
+
+	protected function filterVar($value)
+	{
+		if (version_compare(_PS_VERSION_, '1.6.0.7', '>=') === true)
+			return Tools::purifyHTML($value);
+		else
+			return filter_var($value, FILTER_SANITIZE_STRING);
 	}
 }

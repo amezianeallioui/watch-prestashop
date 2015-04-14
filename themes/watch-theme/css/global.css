@@ -2719,12 +2719,6 @@ input[type="button"].btn-block {
   padding-left: 0;
   list-style: none;
 }
-.nav:before, .nav:after {
-  content: " ";
-  /* 1 */
-  display: table;
-  /* 2 */
-}
 .nav:after {
   clear: both;
 }
@@ -2739,7 +2733,6 @@ input[type="button"].btn-block {
 }
 .nav > li > a:hover, .nav > li > a:focus {
   text-decoration: none;
-  background-color: #eeeeee;
 }
 .nav > li.disabled > a {
   color: #999999;
@@ -2786,6 +2779,7 @@ input[type="button"].btn-block {
   border: 1px solid #dddddd;
   border-bottom-color: transparent;
   cursor: default;
+  font-family: "DINpro-bold" !important;
 }
 
 .nav-pills > li {
@@ -6980,12 +6974,36 @@ a:hover {
     padding-right: 0;
   }
 }
+
+@font-face {
+  font-family: 'DINPro-Bold';
+  src: url('font/DINPro-Bold.eot');
+  src: url('font/DINPro-Bold.eot?#iefix') format('embedded-opentype'), url('../font/DINPro-Bold.woff2') format('woff2'), url('../font/DINPro-Bold.woff') format('woff'), url('../font/DINPro-Bold.ttf') format('truetype'), url('../font/DINPro-Bold.svg#DINPro-Bold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'DINPro-Medium';
+  src: url('font/DINPro-Medium.eot');
+  src: url('font/DINPro-Medium.eot?#iefix') format('embedded-opentype'), url('../font/DINPro-Medium.woff2') format('woff2'), url('../font/DINPro-Medium.woff') format('woff'), url('../font/DINPro-Medium.ttf') format('truetype'), url('../font/DINPro-Medium.svg#DINPro-Medium') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'DINPro-Regular';
+  src: url('font/DINPro-Regular.eot');
+  src: url('font/DINPro-Regular.eot?#iefix') format('embedded-opentype'), url('../font/DINPro-Regular.woff2') format('woff2'), url('../font/DINPro-Regular.woff') format('woff'), url('../font/DINPro-Regular.ttf') format('truetype'), url('../font/DINPro-Regular.svg#DINPro-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   min-width: 320px;
   height: 100%;
   line-height: 18px;
   font-size: 13px;
-  color: #777777;
+  color: black;
+  font-family: 'DINPro-regular';
 }
 body.content_only {
   background: none;
@@ -7649,9 +7667,10 @@ table.table_block td {
 }
 
 .product-name {
-  font-size: 17px;
-  color: #3a3939;
+  font-size: 15px;
   margin-bottom: 0;
+  color: black;
+  font-family: "DINpro-regular";
 }
 .product-name a {
   font-size: 17px;
@@ -7674,8 +7693,8 @@ table.table_block td {
 }
 
 .price.product-price {
-  font: 600 21px/26px "Open Sans", sans-serif;
-  color: #333333;
+  font: normal 16px "DINpro-bold", sans-serif;
+  color: black;
 }
 
 .old-price {
@@ -7717,6 +7736,7 @@ table.table_block td {
 
 .new-box {
   left: -4px;
+  display: none;
 }
 
 .sale-box {
@@ -7898,6 +7918,42 @@ table.table_block td {
   height: auto;
 }
 
+.txtRecommend {
+  margin-top: 30px;
+  margin-bottom: 60px;
+}
+
+.txtRecommend h2 {
+  text-transform: uppercase;
+  color: black;
+  margin-bottom: 30px;
+  font-size: 18px;
+  font-family: 'DINPro-bold';
+}
+
+.txtRecommend p {
+  font-size: 15px;
+  color:black;
+}
+
+.centerLineTitle {
+  width: 100%;
+  position: relative;
+  display: block;
+  height: 47px;
+  margin-top: 30px;
+}
+
+.centerLineTitle:before {
+  display: block;
+  content: " ";
+  z-index: 1;
+  left: 0;
+  position: relative;
+  border-top: 1px solid black;
+  top: 50%;
+}
+
 #home-page-tabs {
   border: none;
   background: white;
@@ -7905,7 +7961,10 @@ table.table_block td {
 @media (min-width: 768px) {
   #home-page-tabs {
     padding: 10px 0;
-    margin: 0 0 0 -18px;
+    margin: 0 auto;
+    display: inline-block;
+    position: relative;
+    z-index: 99;
   }
 }
 #home-page-tabs > li {
@@ -7913,9 +7972,9 @@ table.table_block td {
 }
 @media (min-width: 991px) {
   #home-page-tabs > li {
-    border-left: 1px solid #d6d4d4;
-    margin: 0 0px 0 9px;
-    padding: 0 0px 0 9px;
+    margin: 0 0px 0 15px;
+    padding: 0 0px 0 15px;
+    border-left: 1px solid #d1d1d1;
   }
 }
 @media (max-width: 479px) {
@@ -7924,13 +7983,14 @@ table.table_block td {
   }
 }
 #home-page-tabs > li a {
-  font: 600 21px/24px "Open Sans", sans-serif;
+  font: normal 18px "DINpro-regular", sans-serif;
   color: #555454;
   text-transform: uppercase;
   border: none;
   outline: none;
   margin: 0;
   padding: 10px;
+    color: rgba(0,0,0,.5);
 }
 @media (min-width: 768px) {
   #home-page-tabs > li a {
@@ -7945,11 +8005,13 @@ table.table_block td {
 #home-page-tabs > li:first-child {
   border: none;
 }
+#home-page-tabs > li:last-child {
+  margin-right: 15px;
+}
 #home-page-tabs > li.active a,
 #home-page-tabs > li a:hover {
-  background: #333333;
-  color: white;
   padding: 10px;
+  color: rgba(0,0,0,1);
 }
 @media (min-width: 768px) {
   #home-page-tabs > li.active a,
@@ -10578,4 +10640,7 @@ header .nav .topHeadMenu a:hover {
 
 h2, .h2 {
   font-size: 27px;
+}
+#center_column {
+  text-align: center;
 }
