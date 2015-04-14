@@ -57,7 +57,7 @@ class MyWatch extends Module
 		// Regarde si le module a bien été installé
 		if(!parent::install() ||
 			// !$this->registerHook('home') ||
-			!$this->registerHook('centerColumn') ||
+			!$this->registerHook('header') ||
 			!$this->registerHook('nav') ||
 			!Configuration::updateValue('MYWATCH_CFG', 'my config')
 		)	
