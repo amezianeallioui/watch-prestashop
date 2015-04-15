@@ -34,7 +34,7 @@ class AllProducts extends Module
 		$this->confirmUninstall = $this->l('Attention, vous allez supprimer le module !');
 
 		//On test l'existence d'une variable de configuration propre au module
-		// if(!Configuration::get('ALLPRODUCTS_CFG'))
+		// if(!Configuration::get('ALLPRODUCTS_NUMBER'))
 		// $this->warning = $this->l('La configuration 1 n\'est pas valide.');
 	}
 	
@@ -59,7 +59,7 @@ class AllProducts extends Module
 			|| !$this->registerHook('header') 
 			|| !$this->registerHook('displayHomeTab')
 			|| !$this->registerHook('displayHomeTabContent')
-			|| !Configuration::updateValue('ALLPRODUCTS_CFG', 'my config')
+			|| !Configuration::updateValue('ALLPRODUCTS_NUMBER', 10)
 		)	
 			return false; // si non, on renvoie false
 
@@ -69,26 +69,110 @@ class AllProducts extends Module
 	//methode de desinstallation
 	public function uninstall()
 	{
-		//Script SQL de suppression
-		// include(dirname(__FILE__).'/sql/uninstall.php');
-		// foreach ($sql as $s)
-		// 	if (!Db::getInstance()->execute($s))
-		// 		return false;
-				
 		//On ne degreffe pas, mais on supprime les configs
 		if (!parent::uninstall() ||
-			!Configuration::deleteByName('ALLPRODUCTS_CFG')
+			!Configuration::deleteByName('ALLPRODUCTS_NUMBER')
 		)
 			return false;
 
 		return true;
 	}
 
-	// Dans le header, on injecte le css
+
+
+	
+	//methode pour ajouter une page de configuration
+	public function getContent()
+	{
+		$output = null;
+
+		//traitement du formulaire
+		if (Tools::isSubmit('submit'.$this->name))
+		{
+			$my_config = strval(Tools::getValue('ALLPRODUCTS_NUMBER'));
+			if (!$my_config
+				|| empty($my_config)
+				|| !Validate::isGenericName($my_config))
+			$output .= $this->displayError($this->l('Invalid Configuration value'));
+			else
+			{
+				Configuration::updateValue('ALLPRODUCTS_NUMBER', $my_config);
+				$output .= $this->displayConfirmation($this->l('Settings updated'));
+			}
+		}
+		//affichage du formulaire
+		return $output.$this->displayForm();
+	}
+	
+	//methode d'affichage du formulaire de configuration
+	public function displayForm()
+	{
+		//On recupere la langue par defaut
+		$default_lang = (int)Configuration::get('PS_LANG_DEFAULT');
+
+		//On cree un tableau avec les champs du formulaire
+		$fields_form[0]['form'] = array(
+			'legend' => array(
+				'title' => $this->l('Configuration du module'),
+			),
+			'input' => array(
+				array(
+					'type' => 'text',
+					// 'label' => $this->l('Number of products to show'),
+					'label' => 'Nombre de produits dans le bloc',
+					'name' => 'ALLPRODUCTS_NUMBER',
+					'size' => 5,
+					'required' => true
+				)
+			),
+			'submit' => array(
+				'title' => $this->l('Enregistrer'),
+				'class' => 'button'
+			)
+		);
+
+		//on traite ensuite ce tableau avec les helper
+		$helper = new HelperForm();
+
+		//Module, token et currentIndex
+		$helper->module = $this;
+		$helper->name_controller = $this->name;
+		$helper->token = Tools::getAdminTokenLite('AdminModules');
+		$helper->currentIndex = AdminController::$currentIndex.'&configure='.$this->name;
+
+		//Language
+		$helper->default_form_language = $default_lang;
+		$helper->allow_employee_form_lang = $default_lang;
+
+		//Title et toolbar
+		$helper->title = $this->displayName;
+		$helper->show_toolbar = true;
+		$helper->toolbar_scroll = true;
+		$helper->submit_action = 'submit'.$this->name;
+		$helper->toolbar_btn = array(
+			'save' => array(
+				'desc' => $this->l('Save'),
+				'href' => AdminController::$currentIndex.'&configure='.$this->name.'&save'.$this->name.
+				'&token='.Tools::getAdminTokenLite('AdminModules'),
+			),
+			'back' => array(
+				'href' => AdminController::$currentIndex.'&token='.Tools::getAdminTokenLite('AdminModules'),
+				'desc' => $this->l('Back to list')
+			)
+		);
+
+		//On recupere la valeur actuelle
+		$helper->fields_value['ALLPRODUCTS_NUMBER'] = Configuration::get('ALLPRODUCTS_NUMBER');
+
+		//on genere le formulaire
+		return $helper->generateForm($fields_form);
+	}
+
+		// Dans le header, on injecte le css
 	public function hookHeader()
 	{
-		$this->context->controller->addCSS(_THEME_CSS_DIR_.'product_list.css');
-		$this->context->controller->addCSS($this->_path.'allproducts.css', 'all');
+		if (isset($this->context->controller->php_self) && $this->context->controller->php_self == 'index')
+			$this->context->controller->addCSS(_THEME_CSS_DIR_.'product_list.css');
 	}
 
 	// Menu 
@@ -109,17 +193,17 @@ class AllProducts extends Module
 	/**
 	* Récupérer tous les produits
 	*/
-
 	public function getAllProducts()
 	{
 
 		$context = $this->context;
-		$id_lang = $context->language->id;
+		$id_lang = (int)Configuration::get('PS_LANG_DEFAULT');
 
 		// $context = Context::getContext();
 
 		$page_number = 0;
-		$nb_products = 10;
+		$nb_products = Configuration::get('ALLPRODUCTS_NUMBER');
+		echo $nb_products;
 
 		$sql = '
 		SELECT
@@ -157,136 +241,15 @@ class AllProducts extends Module
 		$sql.= '
 		WHERE product_shop.`active` = 1
 		AND p.`visibility` != \'none\'
-		GROUP BY product_shop.id_product
 		ORDER BY p.id_product ASC
-		LIMIT '.(int)($page_number * $nb_products).', '.(int)$nb_products;
+		LIMIT '.$nb_products;
 
 		if (!$result = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sql))
 			return false;
 
 		return Product::getProductsProperties($id_lang, $result);
 	}
-
 	
-	/*//methode pour ajouter une page de configuration
-	public function getContent()
-	{
-		$output = null;
-
-		//traitement du formulaire
-		if (Tools::isSubmit('submit'.$this->name))
-		{
-			$my_config = strval(Tools::getValue('ALLPRODUCTS_CFG'));
-			if (!$my_config
-				|| empty($my_config)
-				|| !Validate::isGenericName($my_config))
-			$output .= $this->displayError($this->l('Invalid Configuration value'));
-			else
-			{
-				Configuration::updateValue('ALLPRODUCTS_CFG', $my_config);
-				$output .= $this->displayConfirmation($this->l('Settings updated'));
-			}
-		}
-		//affichage du formulaire
-		return $output.$this->displayForm();
-	}*/
-	
-	//methode d'affichage du formulaire de configuration
-	/*public function displayForm()
-	{
-		//On recupere la langue par defaut
-		$default_lang = (int)Configuration::get('PS_LANG_DEFAULT');
-
-		//On cree un tableau avec les champs du formulaire
-		$fields_form[0]['form'] = array(
-			'legend' => array(
-				'title' => $this->l('Settings'),
-			),
-			'input' => array(
-				array(
-					'type' => 'text',
-					'label' => $this->l('Configuration value'),
-					'name' => 'ALLPRODUCTS_CFG',
-					'size' => 20,
-					'required' => true
-				)
-			),
-			'submit' => array(
-				'title' => $this->l('Save'),
-				'class' => 'button'
-			)
-		);
-
-		//on traite ensuite ce tableau avec les helper
-		$helper = new HelperForm();
-
-		//Module, token et currentIndex
-		$helper->module = $this;
-		$helper->name_controller = $this->name;
-		$helper->token = Tools::getAdminTokenLite('AdminModules');
-		$helper->currentIndex = AdminController::$currentIndex.'&configure='.$this->name;
-
-		//Language
-		$helper->default_form_language = $default_lang;
-		$helper->allow_employee_form_lang = $default_lang;
-
-		//Title et toolbar
-		$helper->title = $this->displayName;
-		$helper->show_toolbar = true;
-		$helper->toolbar_scroll = true;
-		$helper->submit_action = 'submit'.$this->name;
-		$helper->toolbar_btn = array(
-			'save' => array(
-				'desc' => $this->l('Save'),
-				'href' => AdminController::$currentIndex.'&configure='.$this->name.'&save'.$this->name.
-				'&token='.Tools::getAdminTokenLite('AdminModules'),
-			),
-			'back' => array(
-				'href' => AdminController::$currentIndex.'&token='.Tools::getAdminTokenLite('AdminModules'),
-				'desc' => $this->l('Back to list')
-			)
-		);
-
-		//On recupere la valeur actuelle
-		$helper->fields_value['ALLPRODUCTS_CFG'] = Configuration::get('ALLPRODUCTS_CFG');
-
-		//on genere le formulaire
-		return $helper->generateForm($fields_form);
-	}*/
-	
-	/*//methode appelée si le module est greffé à la home (hors header et colonnes)
-	public function hookDisplayCenterColumn($params)
-	{
-		//on envoie des variables à smarty
-		$this->context->smarty->assign(array(
-			'my_config' => Configuration::get('ALLPRODUCTS_CFG'),
-			'my_link' => $this->context->link->getModuleLink('mywatch', 'display')
-		)); 
-		
-		//on appel le template correspondant
-		return $this->display(__FILE__, 'mywatch.tpl');
-	}*/
-	
-/*	//ici, on veut le meme comportement dans la colonne de droite
-	public function hookDisplayRightColumn($params)
-	{
-		return $this->hookDisplayLeftColumn($params);
-	}*/
-	
-	
-
-	//Navigation -> on affiche le lien 'Ma montre' avec le bon lien
-	/*public function hookDisplayNav($params)
-	{
-		//on envoie des variables à smarty
-		$this->context->smarty->assign(array(
-			'my_link' => $this->context->link->getModuleLink('mywatch', 'display')
-		)); 
-		
-		//on appel le template correspondant
-		return $this->display(__FILE__, 'nav.tpl');
-	}*/
-
 
 }
 
