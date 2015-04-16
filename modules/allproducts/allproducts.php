@@ -210,7 +210,6 @@ class AllProducts extends Module
 		$result = Product::getProducts($id_lang, $start, $limit, $order_by, $order_way, $id_category,
 		$only_active, null);
 
-		$result = Product::getProductsProperties($id_lang, $result);
 		return Product::getProductsProperties($id_lang, $result);
 
 
