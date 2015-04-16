@@ -34,7 +34,7 @@ class AllProducts extends Module
 		$this->confirmUninstall = $this->l('Attention, vous allez supprimer le module !');
 
 		//On test l'existence d'une variable de configuration propre au module
-		// if(!Configuration::get('ALLPRODUCTS_CFG'))
+		// if(!Configuration::get('ALLPRODUCTS_COLOR'))
 		// $this->warning = $this->l('La configuration 1 n\'est pas valide.');
 	}
 	
@@ -53,7 +53,7 @@ class AllProducts extends Module
 			|| !$this->registerHook('header') 
 			|| !$this->registerHook('displayHomeTab')
 			|| !$this->registerHook('displayHomeTabContent')
-			// || !Configuration::updateValue('ALLPRODUCTS_CFG', 'my config')
+			|| !Configuration::updateValue('ALLPRODUCTS_COLOR', 1000)
 		)	
 			return false; // si non, on renvoie false
 
@@ -63,15 +63,10 @@ class AllProducts extends Module
 	//methode de desinstallation
 	public function uninstall()
 	{
-		//Script SQL de suppression
-		// include(dirname(__FILE__).'/sql/uninstall.php');
-		// foreach ($sql as $s)
-		// 	if (!Db::getInstance()->execute($s))
-		// 		return false;
 				
 		//On ne degreffe pas, mais on supprime les configs
 		if (!parent::uninstall() ||
-			!Configuration::deleteByName('ALLPRODUCTS_CFG')
+			!Configuration::deleteByName('ALLPRODUCTS_COLOR')
 		)
 			return false;
 
@@ -100,37 +95,9 @@ class AllProducts extends Module
 		return $this->display(__FILE__, 'allproducts-home.tpl');
 	}
 
-	/**
-	* Récupérer tous les produits
-	*/
-
-	public function getAllProducts()
-	{
-
-		$context = Context::getContext();
-
-		$id_lang = $context->language->id;
-
-		$page_number = 0;
-		$nb_products = 10;
-		$start = 0;
-		$limit = 0;
-		$order_by = 'id_product';
-		$order_way = 'ASC';
-		$id_category = false;
-		$only_active = false;
-
-		$result = Product::getProducts($id_lang, $start, $limit, $order_by, $order_way, $id_category,
-		$only_active, null);
-
-		$result = Product::getProductsProperties($id_lang, $result);
-		return Product::getProductsProperties($id_lang, $result);
-
-
-	}
 
 	
-	/*//methode pour ajouter une page de configuration
+	//methode pour ajouter une page de configuration
 	public function getContent()
 	{
 		$output = null;
@@ -138,23 +105,23 @@ class AllProducts extends Module
 		//traitement du formulaire
 		if (Tools::isSubmit('submit'.$this->name))
 		{
-			$my_config = strval(Tools::getValue('ALLPRODUCTS_CFG'));
+			$my_config = strval(Tools::getValue('ALLPRODUCTS_COLOR'));
 			if (!$my_config
 				|| empty($my_config)
 				|| !Validate::isGenericName($my_config))
 			$output .= $this->displayError($this->l('Invalid Configuration value'));
 			else
 			{
-				Configuration::updateValue('ALLPRODUCTS_CFG', $my_config);
+				Configuration::updateValue('ALLPRODUCTS_COLOR', $my_config);
 				$output .= $this->displayConfirmation($this->l('Settings updated'));
 			}
 		}
 		//affichage du formulaire
 		return $output.$this->displayForm();
-	}*/
+	}
 	
 	//methode d'affichage du formulaire de configuration
-	/*public function displayForm()
+	public function displayForm()
 	{
 		//On recupere la langue par defaut
 		$default_lang = (int)Configuration::get('PS_LANG_DEFAULT');
@@ -162,19 +129,21 @@ class AllProducts extends Module
 		//On cree un tableau avec les champs du formulaire
 		$fields_form[0]['form'] = array(
 			'legend' => array(
-				'title' => $this->l('Settings'),
+				// 'title' => $this->l('Configuration du module'),
+				'title' => 'Configuration du module',
 			),
 			'input' => array(
 				array(
 					'type' => 'text',
-					'label' => $this->l('Configuration value'),
-					'name' => 'ALLPRODUCTS_CFG',
-					'size' => 20,
+					// 'label' => $this->l('Configuration value'),
+					'label' => 'Nombre de produits à afficher',
+					'name' => 'ALLPRODUCTS_COLOR',
+					'size' => 5,
 					'required' => true
 				)
 			),
 			'submit' => array(
-				'title' => $this->l('Save'),
+				'title' => $this->l('Enregistrer'),
 				'class' => 'button'
 			)
 		);
@@ -210,45 +179,42 @@ class AllProducts extends Module
 		);
 
 		//On recupere la valeur actuelle
-		$helper->fields_value['ALLPRODUCTS_CFG'] = Configuration::get('ALLPRODUCTS_CFG');
+		$helper->fields_value['ALLPRODUCTS_COLOR'] = Configuration::get('ALLPRODUCTS_COLOR');
 
 		//on genere le formulaire
 		return $helper->generateForm($fields_form);
-	}*/
-	
-	/*//methode appelée si le module est greffé à la home (hors header et colonnes)
-	public function hookDisplayCenterColumn($params)
-	{
-		//on envoie des variables à smarty
-		$this->context->smarty->assign(array(
-			'my_config' => Configuration::get('ALLPRODUCTS_CFG'),
-			'my_link' => $this->context->link->getModuleLink('mywatch', 'display')
-		)); 
-		
-		//on appel le template correspondant
-		return $this->display(__FILE__, 'mywatch.tpl');
-	}*/
-	
-/*	//ici, on veut le meme comportement dans la colonne de droite
-	public function hookDisplayRightColumn($params)
-	{
-		return $this->hookDisplayLeftColumn($params);
-	}*/
-	
+	}
 	
 
-	//Navigation -> on affiche le lien 'Ma montre' avec le bon lien
-	/*public function hookDisplayNav($params)
-	{
-		//on envoie des variables à smarty
-		$this->context->smarty->assign(array(
-			'my_link' => $this->context->link->getModuleLink('mywatch', 'display')
-		)); 
-		
-		//on appel le template correspondant
-		return $this->display(__FILE__, 'nav.tpl');
-	}*/
 
+	/**
+	* Récupérer tous les produits
+	*/
+
+	public function getAllProducts()
+	{
+
+		$context = Context::getContext();
+
+		$id_lang = $context->language->id;
+
+		$start = 0;
+
+		Configuration::get('ALLPRODUCTS_COLOR') ? $limit = Configuration::get('ALLPRODUCTS_COLOR') : $limit = 1000;
+
+		$order_by = 'id_product';
+		$order_way = 'ASC';
+		$id_category = false;
+		$only_active = false;
+
+		$result = Product::getProducts($id_lang, $start, $limit, $order_by, $order_way, $id_category,
+		$only_active, null);
+
+		$result = Product::getProductsProperties($id_lang, $result);
+		return Product::getProductsProperties($id_lang, $result);
+
+
+	}
 
 }
 
