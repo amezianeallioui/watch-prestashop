@@ -12,7 +12,7 @@ config/settings.inc.php
 
 log/*.log
 
-# img/*
+img/*
 !img/index.php
 !img/*/index.php
 
