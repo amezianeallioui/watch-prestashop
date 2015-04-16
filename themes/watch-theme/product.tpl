@@ -38,7 +38,9 @@
 	<div class="primary_block row">
 		{if !$content_only}
 			<div class="container">
-				<div class="top-hr"></div>
+				<div class="top-hr">
+					<h1 itemprop="name">{$product->name|escape:'html':'UTF-8'}</h1>
+				</div>
 			</div>
 		{/if}
 		{if isset($adminActionDisplay) && $adminActionDisplay}
@@ -152,10 +154,12 @@
 			{/if}
 			<h1 itemprop="name">{$product->name|escape:'html':'UTF-8'}</h1>
 			<p id="product_reference"{if empty($product->reference) || !$product->reference} style="display: none;"{/if}>
-				<label>{l s='Reference:'} </label>
+				<label>{l s='Reference:'} : </label>
 				<span class="editable" itemprop="sku">{if !isset($groups)}{$product->reference|escape:'html':'UTF-8'}{/if}</span>
 			</p>
 			{if !$product->is_virtual && $product->condition}
+			<p id=''>Disponibilité : {if $product->quantity <= 0}{if $PS_STOCK_MANAGEMENT && $allow_oosp}{$product->available_later}{else}{l s='This product is no longer in stock'}{/if}{elseif $PS_STOCK_MANAGEMENT}{$product->available_now}{/if}
+			</p>
 			<p id="product_condition">
 				<label>{l s='Condition:'} </label>
 				{if $product->condition == 'new'}
@@ -199,17 +203,17 @@
 			{/if}
 			{if ($display_qties == 1 && !$PS_CATALOG_MODE && $PS_STOCK_MANAGEMENT && $product->available_for_order)}
 				<!-- number of item in stock -->
-				<p id="pQuantityAvailable"{if $product->quantity <= 0} style="display: none;"{/if}>
+				<!-- <p id="pQuantityAvailable"{if $product->quantity <= 0} style="display: none;"{/if}>
 					<span id="quantityAvailable">{$product->quantity|intval}</span>
 					<span {if $product->quantity > 1} style="display: none;"{/if} id="quantityAvailableTxt">{l s='Item'}</span>
 					<span {if $product->quantity == 1} style="display: none;"{/if} id="quantityAvailableTxtMultiple">{l s='Items'}</span>
-				</p>
+				</p> -->
 			{/if}
 			<!-- availability or doesntExist -->
-			<p id="availability_statut"{if !$PS_STOCK_MANAGEMENT || ($product->quantity <= 0 && !$product->available_later && $allow_oosp) || ($product->quantity > 0 && !$product->available_now) || !$product->available_for_order || $PS_CATALOG_MODE} style="display: none;"{/if}>
+			<!-- <p id="availability_statut"{if !$PS_STOCK_MANAGEMENT || ($product->quantity <= 0 && !$product->available_later && $allow_oosp) || ($product->quantity > 0 && !$product->available_now) || !$product->available_for_order || $PS_CATALOG_MODE} style="display: none;"{/if}>
 				{*<span id="availability_label">{l s='Availability:'}</span>*}
 				<span id="availability_value" class="label{if $product->quantity <= 0 && !$allow_oosp} label-danger{elseif $product->quantity <= 0} label-warning{else} label-success{/if}">{if $product->quantity <= 0}{if $PS_STOCK_MANAGEMENT && $allow_oosp}{$product->available_later}{else}{l s='This product is no longer in stock'}{/if}{elseif $PS_STOCK_MANAGEMENT}{$product->available_now}{/if}</span>
-			</p>
+			</p> -->
 			{if $PS_STOCK_MANAGEMENT}
 				{hook h="displayProductDeliveryTime" product=$product}
 				<p class="warning_inline" id="last_quantities"{if ($product->quantity > $last_qties || $product->quantity <= 0) || $allow_oosp || !$product->available_for_order || $PS_CATALOG_MODE} style="display: none"{/if} >{l s='Warning: Last items in stock!'}</p>
