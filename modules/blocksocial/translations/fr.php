@@ -2,7 +2,6 @@
 
 global $_MODULE;
 $_MODULE = array();
-
 $_MODULE['<{blocksocial}prestashop>blocksocial_3c3fcc2aa9705117ce4b589ed5a72853'] = 'Bloc social';
 $_MODULE['<{blocksocial}prestashop>blocksocial_094d3ac865853e0be9ba42e80f0f7ee7'] = 'Permet d\'ajouter des informations supplémentaires concernant les réseaux sociaux de votre marque.';
 $_MODULE['<{blocksocial}prestashop>blocksocial_f4f70727dc34561dfde1a3c529b6205c'] = 'Paramètres';
@@ -32,8 +31,3 @@ $_MODULE['<{blocksocial}prestashop>blocksocial_5b2c8bfd1bc974966209b7be1cb51a72'
 $_MODULE['<{blocksocial}prestashop>blocksocial_86709a608bd914b28221164e6680ebf7'] = 'Pinterest';
 $_MODULE['<{blocksocial}prestashop>blocksocial_15db599e0119be476d71bfc1fda72217'] = 'Vimeo';
 $_MODULE['<{blocksocial}prestashop>blocksocial_55f015a0c5605702f913536afe70cfb0'] = 'Instagram';
-$_MODULE['<{blocksocial}prestashop>blocksocial_970cfba66b8380fb97b742e4571356c6'] = 'YouTube';
-$_MODULE['<{blocksocial}prestashop>blocksocial_dda8dc38128a8c843ba9f496d6ee7186'] = 'Google Plus';
-
-
-return $_MODULE;

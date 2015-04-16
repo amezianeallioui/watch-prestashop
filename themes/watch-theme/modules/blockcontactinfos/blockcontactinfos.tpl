@@ -24,8 +24,16 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
+<section class="blockcategories_footer footer-block col-xs-12 col-sm-3">
+    <div class="category_footer toggle-footer footer_logo">
+        <a href="{if $force_ssl}{$base_dir_ssl}{else}{$base_dir}{/if}" title="{$shop_name|escape:'html':'UTF-8'}">
+            <img class="logo img-responsive" src="{$logo_url}" alt="{$shop_name|escape:'html':'UTF-8'}"{if isset($logo_image_width) && $logo_image_width} width="{$logo_image_width}"{/if}{if isset($logo_image_height) && $logo_image_height} height="{$logo_image_height}"{/if}/>
+        </a>
+    </div> <!-- .category_footer -->
+</section>
+
 <!-- MODULE Block contact infos -->
-<section id="block_contact_infos" class="footer-block col-xs-12 col-sm-4">
+<section id="block_contact_infos" class="footer-block col-xs-12 col-sm-3">
 	<div>
         <h4>{l s='Store Information' mod='blockcontactinfos'}</h4>
         <ul class="toggle-footer">

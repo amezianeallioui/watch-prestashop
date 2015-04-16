@@ -2,7 +2,6 @@
 
 global $_MODULE;
 $_MODULE = array();
-
 $_MODULE['<{blockcmsinfo}prestashop>blockcmsinfo_988659f6c5d3210a3f085ecfecccf5d3'] = 'Bloc CMS d\'information client';
 $_MODULE['<{blockcmsinfo}prestashop>blockcmsinfo_cd4abd29bdc076fb8fabef674039cd6e'] = 'Ajoute un bloc d\'information client sur votre boutique.';
 $_MODULE['<{blockcmsinfo}prestashop>blockcmsinfo_86432715902fbaf53de469fed3fa6c53'] = 'Vous devez sélectionner au moins une boutique.';
@@ -16,6 +15,3 @@ $_MODULE['<{blockcmsinfo}prestashop>blockcmsinfo_6fcdef6ca2bb47a0cf61cd41ccf274f
 $_MODULE['<{blockcmsinfo}prestashop>blockcmsinfo_9f82518d468b9fee614fcc92f76bb163'] = 'Boutique';
 $_MODULE['<{blockcmsinfo}prestashop>blockcmsinfo_56425383198d22fc8bb296bcca26cecf'] = 'Texte du bloc';
 $_MODULE['<{blockcmsinfo}prestashop>blockcmsinfo_ef61fb324d729c341ea8ab9901e23566'] = 'Ajouter';
-
-
-return $_MODULE;

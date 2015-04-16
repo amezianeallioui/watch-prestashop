@@ -23,6 +23,14 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 {if !isset($content_only) || !$content_only}
+
+
+					<div class="row">
+						<div class="col-sm-4"><img src='{$img_dir}/livraison.jpg' class='imgFooter'/></div>
+						<div class="col-sm-4"><img src='{$img_dir}/renvoi.jpg' class='imgFooter'/></div>
+						<div class="col-sm-4"><img src='{$img_dir}/promotion.jpg' class='imgFooter'/></div>
+					</div>
+			
 					</div><!-- #center_column -->
 					{if isset($right_column_size) && !empty($right_column_size)}
 						<div id="right_column" class="col-xs-12 col-sm-{$right_column_size|intval} column">{$HOOK_RIGHT_COLUMN}</div>
@@ -30,6 +38,7 @@
 					</div><!-- .row -->
 				</div><!-- #columns -->
 			</div><!-- .columns-container -->
+
 			{if isset($HOOK_FOOTER)}
 				<!-- Footer -->
 				<div class="footer-container">

@@ -2,7 +2,6 @@
 
 global $_MODULE;
 $_MODULE = array();
-
 $_MODULE['<{blockbestsellers}prestashop>blockbestsellers_9862f1949f776f69155b6e6b330c7ee1'] = 'Bloc meilleures ventes';
 $_MODULE['<{blockbestsellers}prestashop>blockbestsellers_ed6476843a865d9daf92e409082b76e1'] = 'Ajoute un bloc qui affiche les meilleures ventes de la boutique.';
 $_MODULE['<{blockbestsellers}prestashop>blockbestsellers_c888438d14855d7d96a2724ee9c306bd'] = 'Mise à jour réussie';
@@ -20,6 +19,3 @@ $_MODULE['<{blockbestsellers}prestashop>blockbestsellers_3cb29f0ccc5fd220a97df89
 $_MODULE['<{blockbestsellers}prestashop>blockbestsellers_eae99cd6a931f3553123420b16383812'] = 'Toutes les meilleures ventes';
 $_MODULE['<{blockbestsellers}prestashop>blockbestsellers_f7be84d6809317a6eb0ff3823a936800'] = 'Pas encore de meilleure vente';
 $_MODULE['<{blockbestsellers}prestashop>tab_d7b2933ba512ada478c97fa43dd7ebe6'] = 'Meilleures Ventes';
-
-
-return $_MODULE;

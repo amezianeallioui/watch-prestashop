@@ -50,7 +50,7 @@ class Blocknewsletter extends Module
 		$this->confirmUninstall = $this->l('Are you sure that you want to delete all of your contacts?');
 		$this->ps_versions_compliancy = array('min' => '1.6', 'max' => _PS_VERSION_);
 
-		$this->version = '2.1.5';
+		$this->version = '2.1.6';
 		$this->author = 'PrestaShop';
 		$this->error = false;
 		$this->valid = false;
@@ -234,7 +234,7 @@ class Blocknewsletter extends Module
 		$helper_list->token = Tools::getAdminTokenLite('AdminModules');
 		$helper_list->actions = array('viewCustomer');
 		$helper_list->toolbar_btn['export'] = array(
-			'href' => $helper_list->currentIndex.'&amp;exportSubscribers&amp;token='.$helper_list->token,
+			'href' => $helper_list->currentIndex.'&exportSubscribers&token='.$helper_list->token,
 			'desc' => $this->l('Export')
 		);
 

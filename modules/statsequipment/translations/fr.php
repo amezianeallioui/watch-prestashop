@@ -2,7 +2,6 @@
 
 global $_MODULE;
 $_MODULE = array();
-
 $_MODULE['<{statsequipment}prestashop>statsequipment_247270d410e2b9de01814b82111becda'] = 'Navigateurs web et systèmes d\'exploitation';
 $_MODULE['<{statsequipment}prestashop>statsequipment_2876718a648dea03aaafd4b5a63b1efe'] = 'Ajoute un onglet contenant un graphique des navigateurs web et systèmes d\'exploitation utilisé, dans le tableau de bord des statistiques.';
 $_MODULE['<{statsequipment}prestashop>statsequipment_6602bbeb2956c035fb4cb5e844a4861b'] = 'Guide';
@@ -14,6 +13,3 @@ $_MODULE['<{statsequipment}prestashop>statsequipment_90c58bfe4872fc9ca7bf6a181c3
 $_MODULE['<{statsequipment}prestashop>statsequipment_bb38096ab39160dc20d44f3ea6b44507'] = 'Extensions';
 $_MODULE['<{statsequipment}prestashop>statsequipment_9ffafc9e090c8e1c06f928ef2817efd6'] = 'Navigateurs utilisés';
 $_MODULE['<{statsequipment}prestashop>statsequipment_0241b7aaaa5f76afd585bb6cdae314d1'] = 'Systèmes d\'exploitation utilisés';
-
-
-return $_MODULE;

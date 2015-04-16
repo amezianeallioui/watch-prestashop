@@ -2,7 +2,6 @@
 
 global $_MODULE;
 $_MODULE = array();
-
 $_MODULE['<{statscheckup}prestashop>statscheckup_e7a908d79d3758c911692ba791da9c70'] = 'Évaluation du catalogue';
 $_MODULE['<{statscheckup}prestashop>statscheckup_11c7290f636a816cbcffb9059958b5c0'] = 'Ajoute une évaluation rapide de la qualité de votre catalogue dans le tableau de bord des statistiques.';
 $_MODULE['<{statscheckup}prestashop>statscheckup_20015706a8cbd457cbb6ea3e7d5dc9b3'] = 'Configuration mise à jour';
@@ -30,6 +29,3 @@ $_MODULE['<{statscheckup}prestashop>statscheckup_7d74f3b92b19da5e606d737d339a967
 $_MODULE['<{statscheckup}prestashop>statscheckup_4d3d769b812b6faa6b76e1a8abaece2d'] = 'Activé';
 $_MODULE['<{statscheckup}prestashop>statscheckup_3f74e68055b1123e5d7deb32cd8b0b1b'] = 'Desc.';
 $_MODULE['<{statscheckup}prestashop>statscheckup_4cc6684df7b4a92b1dec6fce3264fac8'] = 'Global';
-
-
-return $_MODULE;
