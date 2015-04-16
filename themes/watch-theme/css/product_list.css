@@ -244,12 +244,16 @@ ul.product_list.grid > li .product-container .product-image-container .content_p
   left: 0;
   bottom: -1px;
   width: 100%;
-  background: url(../img/price-container-bg.png);
-  padding: 9px 0;
+  padding: 10px 20px;
   display: none;
 }
 ul.product_list.grid > li .product-container .product-image-container .content_price span {
+  text-align: center;
   color: white;
+}
+ul.product_list.grid > li .product-container .product-image-container .content_price > span {
+  text-align: left;
+  color: black;
 }
 ul.product_list.grid > li .product-container .product-image-container .content_price span.old-price {
   color: #b1b0b0;
@@ -275,7 +279,7 @@ ul.product_list.grid > li .product-container .content_price {
 ul.product_list.grid > li .product-container .old-price,
 ul.product_list.grid > li .product-container .price,
 ul.product_list.grid > li .product-container .price-percent-reduction {
-  display: inline-block;
+  display: block;
 }
 ul.product_list.grid > li .product-container .product-flags {
   display: none;
@@ -307,9 +311,6 @@ ul.product_list.grid > li .product-container .functional-buttons div {
 }
 @media (min-width: 1200px) {
   ul.product_list.grid > li.hovered .product-container {
-    -webkit-box-shadow: rgba(0, 0, 0, 0.17) 0 0 13px;
-    -moz-box-shadow: rgba(0, 0, 0, 0.17) 0 0 13px;
-    box-shadow: rgba(0, 0, 0, 0.17) 0 0 13px;
     position: relative;
     z-index: 10;
   }
@@ -520,7 +521,7 @@ Product list(Index page) Styles
 }
 @media (min-width: 1200px) {
   #index ul.product_list.tab-pane > li {
-    padding-bottom: 85px;
+    padding-bottom: 40px;
     margin-bottom: 0;
   }
 }

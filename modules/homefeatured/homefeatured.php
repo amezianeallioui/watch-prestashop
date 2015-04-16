@@ -35,7 +35,7 @@ class HomeFeatured extends Module
 	{
 		$this->name = 'homefeatured';
 		$this->tab = 'front_office_features';
-		$this->version = '1.6.2';
+		$this->version = '1.6.3';
 		$this->author = 'PrestaShop';
 		$this->need_instance = 0;
 
@@ -187,7 +187,7 @@ class HomeFeatured extends Module
 	public function _clearCache($template, $cache_id = NULL, $compile_id = NULL)
 	{
 		parent::_clearCache('homefeatured.tpl');
-		parent::_clearCache('tab.tpl', 'homefeatured-tab');
+		parent::_clearCache('tab.tpl', $this->getCacheId('homefeatured-tab'));
 	}
 
 	public function renderForm()
