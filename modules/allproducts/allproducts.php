@@ -52,7 +52,6 @@ class AllProducts extends Module
 			|| !$this->registerHook('header') 
 			|| !$this->registerHook('displayHomeTab')
 			|| !$this->registerHook('displayHomeTabContent')
-			|| !Configuration::updateValue('ALLPRODUCTS_NUMBER', 1000)
 			|| !Configuration::updateValue('ALLPRODUCTS_ONLY_ACTIVE', true)
 		)	
 			return false; // si non, on renvoie false
@@ -105,12 +104,11 @@ class AllProducts extends Module
 		{
 			$number_of_products = strval(Tools::getValue('ALLPRODUCTS_NUMBER'));
 			$only_active = strval(Tools::getValue('ALLPRODUCTS_ONLY_ACTIVE'));
-			echo 'test : '.$only_active;
 
 			if(
-				(!$number_of_products && !$only_active)
-				// || (empty($number_of_products) || empty($only_active))
-				// || (!Validate::isGenericName($number_of_products) || !Validate::isBool($only_active))
+				!$only_active
+				|| empty($only_active)
+				|| !Validate::isGenericName($only_active)
 			)
 			$output .= $this->displayError($this->l('Invalid Configuration value'));
 			else
@@ -132,11 +130,11 @@ class AllProducts extends Module
 
 		$options = array(
 		  array(
-		    'id_option' => 1,              // The value of the 'value' attribute of the <option> tag.
-		    'name' => $this->l('Enabled')              // The value of the text content of the  <option> tag.
+		    'id_option' => 1,
+		    'name' => $this->l('Enabled')
 		  ),
 		  array(
-		    'id_option' => 0,
+		    'id_option' => 2,
 		    'name' => $this->l('Disabled')
 		  )
 		);
@@ -144,26 +142,24 @@ class AllProducts extends Module
 		//On cree un tableau avec les champs du formulaire
 		$fields_form[0]['form'] = array(
 			'legend' => array(
-				// 'title' => $this->l('Configuration du module'),
 				'title' => 'Configuration du module',
 			),
 			'input' => array(
 				array(
 					'type' => 'text',
-					'label' => 'Nombre de produits à afficher',
+					'label' => 'Nombre maximum de produits à afficher',
 					'name' => 'ALLPRODUCTS_NUMBER',
 					'size' => 5,
-					'required' => true,
 				),
 				array(
-				  'type' => 'select',                              // This is a <select> tag.
-				  'label' => 'Afficher uniquement les produits activés',         // The <label> for this <select> tag.
-				  'name' => 'ALLPRODUCTS_ONLY_ACTIVE',                     // The content of the 'id' attribute of the <select> tag.
-				  'required' => true,                              // If set to true, this option must be set.
+				  'type' => 'select',                              
+				  'label' => 'Afficher uniquement les produits activés',        
+				  'name' => 'ALLPRODUCTS_ONLY_ACTIVE',                   
+				  'required' => true,                             
 				  'options' => array(
-				    'query' => $options,                           // $options contains the data itself.
-				    'id' => 'id_option',                           // The value of the 'id' key must be the same as the key for 'value' attribute of the <option> tag in each $options sub-array.
-				    'name' => 'name'                               // The value of the 'name' key must be the same as the key for the text content of the <option> tag in each $options sub-array.
+				    'query' => $options,                          
+				    'id' => 'id_option',                          
+				    'name' => 'name'                              
 				  )
 				)
 			),
@@ -224,13 +220,13 @@ class AllProducts extends Module
 		$id_lang = $context->language->id; // id de la langue active
 		$start = 0;
 		// On regarde si un nombre de produits à afficher a été indiqué
-		Configuration::get('ALLPRODUCTS_NUMBER') ? $limit = Configuration::get('ALLPRODUCTS_NUMBER') : $limit = 1000;
+		$limit = Configuration::get('ALLPRODUCTS_NUMBER') ? Configuration::get('ALLPRODUCTS_NUMBER') : 0;
 		$order_by = 'id_product';
 		$order_way = 'ASC';
 		$id_category = false;
 		// Afficher uniquement les produits activés ou non
 
-		$only_active = Configuration::get('ALLPRODUCTS_ONLY_ACTIVE');
+		$only_active = Configuration::get('ALLPRODUCTS_ONLY_ACTIVE') == 1 ? true : false;
 
 		// On récupère tous les produits
 		$products = Product::getProducts($id_lang, $start, $limit, $order_by, $order_way, $id_category,
