@@ -99,15 +99,65 @@
 						</div>
 					</div>
 				</header>
+
+				<!-- Header pour une page catégorie -->
+
+				{if isset($category)}
+					{if $category->id AND $category->active}
+						<!-- Si la catégorie contient des sous-catégories, on affiche le bandeau noir en guise de header -->
+						{if isset($subcategories)}
+							<div class="banner-title">
+								<h1 class="category-title">Catégorie : {$category->name|escape:'html':'UTF-8'}{if isset($categoryNameComplement)}&nbsp;{$categoryNameComplement|escape:'html':'UTF-8'}{/if}</h1>
+							</div>
+
+							<div class="subtitle">
+					            <h2>Nos choix de montres {$category->name|escape:'html':'UTF-8'}{if isset($categoryNameComplement)}&nbsp;{$categoryNameComplement|escape:'html':'UTF-8'}{/if}</h2>
+
+					             {if $category->description}
+					                {$category->description}
+					            {/if}
+					        </div>
+							
+				           
+
+						<!-- Sinon, on affiche l'image associée à la catégorie -->
+				        {else}
+				            <div class="content_scene_cat_bg"{if $category->id_image} style="background:url({$link->getCatImageLink($category->link_rewrite, $category->id_image, 'category_default')|escape:'html':'UTF-8'}) right center no-repeat; background-size:cover; min-height:{$categorySize.height}px;"{/if}>
+				                {if $category->description}
+				                    <div class="cat_desc">
+				                    <span class="category-name">
+				                        {strip}
+				                            {$category->name|escape:'html':'UTF-8'}
+				                            {if isset($categoryNameComplement)}
+				                                {$categoryNameComplement|escape:'html':'UTF-8'}
+				                            {/if}
+				                        {/strip}
+				                    </span>
+				                    {if Tools::strlen($category->description) > 350}
+				                        <div id="category_description_short" class="rte">{$description_short}</div>
+				                        <div id="category_description_full" class="unvisible rte">{$category->description}</div>
+				                        <a href="{$link->getCategoryLink($category->id_category, $category->link_rewrite)|escape:'html':'UTF-8'}" class="lnk_more">{l s='More'}</a>
+				                    {else}
+				                        <div class="rte">{$category->description}</div>
+				                    {/if}
+				                    </div>
+				                {/if}
+				            </div>
+				        {/if}
+				    {/if}
+				{/if}
 			</div>
 			<div class="columns-container">
 				<div id="columns" class="container">
-					{if $page_name !='index' && $page_name !='pagenotfound'}
-						{include file="$tpl_dir./breadcrumb.tpl"}
-					{/if}
+					{*
+						{if $page_name !='index' && $page_name !='pagenotfound'}
+							{include file="$tpl_dir./breadcrumb.tpl"}
+						{/if}
+					*}
 					<div id="slider_row" class="row">
 						<div id="top_column" class="center_column col-xs-12 col-sm-12">{hook h="displayTopColumn"}</div>
 					</div>
+
 					<div class="row">
 						{if isset($left_column_size) && !empty($left_column_size)}
 						<div id="left_column" class="column col-xs-12 col-sm-{$left_column_size|intval}">{$HOOK_LEFT_COLUMN}</div>
