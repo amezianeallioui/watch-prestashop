@@ -6976,22 +6976,22 @@ a:hover {
 
 @font-face {
   font-family: 'DINPro-Bold';
-  src: url('font/DINPro-Bold.eot');
-  src: url('font/DINPro-Bold.eot?#iefix') format('embedded-opentype'), url('../font/DINPro-Bold.woff2') format('woff2'), url('../font/DINPro-Bold.woff') format('woff'), url('../font/DINPro-Bold.ttf') format('truetype'), url('../font/DINPro-Bold.svg#DINPro-Bold') format('svg');
+  src: url('../font/DINPro-Bold.eot');
+  src: url('../font/DINPro-Bold.eot?#iefix') format('embedded-opentype'), url('../font/DINPro-Bold.woff2') format('woff2'), url('../font/DINPro-Bold.woff') format('woff'), url('../font/DINPro-Bold.ttf') format('truetype'), url('../font/DINPro-Bold.svg#DINPro-Bold') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'DINPro-Medium';
-  src: url('font/DINPro-Medium.eot');
-  src: url('font/DINPro-Medium.eot?#iefix') format('embedded-opentype'), url('../font/DINPro-Medium.woff2') format('woff2'), url('../font/DINPro-Medium.woff') format('woff'), url('../font/DINPro-Medium.ttf') format('truetype'), url('../font/DINPro-Medium.svg#DINPro-Medium') format('svg');
+  src: url('../font/DINPro-Medium.eot');
+  src: url('../font/DINPro-Medium.eot?#iefix') format('embedded-opentype'), url('../font/DINPro-Medium.woff2') format('woff2'), url('../font/DINPro-Medium.woff') format('woff'), url('../font/DINPro-Medium.ttf') format('truetype'), url('../font/DINPro-Medium.svg#DINPro-Medium') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'DINPro-Regular';
-  src: url('font/DINPro-Regular.eot');
-  src: url('font/DINPro-Regular.eot?#iefix') format('embedded-opentype'), url('../font/DINPro-Regular.woff2') format('woff2'), url('../font/DINPro-Regular.woff') format('woff'), url('../font/DINPro-Regular.ttf') format('truetype'), url('../font/DINPro-Regular.svg#DINPro-Regular') format('svg');
+  src: url('../font/DINPro-Regular.eot');
+  src: url('../font/DINPro-Regular.eot?#iefix') format('embedded-opentype'), url('../font/DINPro-Regular.woff2') format('woff2'), url('../font/DINPro-Regular.woff') format('woff'), url('../font/DINPro-Regular.ttf') format('truetype'), url('../font/DINPro-Regular.svg#DINPro-Regular') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -8794,6 +8794,51 @@ div.star a:hover {
 
 .header-container {
   background: white;
+}
+
+.header-container .banner-title{
+  display: block;
+  background-color: #000;
+  color: white;
+  text-align: center;  
+}
+
+.header-container .banner-title h1{
+  padding: 30px 0;
+  margin: 0;
+  font-size: 16px;
+  font-family: 'DINPro-Medium';
+  text-transform: uppercase;
+}
+
+.header-container .banner-title:after{
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 17px 15px 0 15px;
+  border-color: #000000 transparent transparent;
+  display: block;
+  margin: 0 auto;
+}
+
+.header-container .subtitle{
+  margin-top: 70px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.header-container .subtitle h2{
+  font-size: 18px;
+  font-family: 'DINPro-Bold';
+}
+
+.header-container .subtitle p{
+  display: block;
+  margin: 32px auto 0;
+  font-size: 18px;
+  font-family: 'DINPro-Regular';
+  max-width: 960px;
+
 }
 
 .breadcrumb {
