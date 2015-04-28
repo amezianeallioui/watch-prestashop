@@ -8797,48 +8797,51 @@ div.star a:hover {
 }
 
 .header-container .banner-title{
-  display: block;
   background-color: #000;
   color: white;
   text-align: center;  
+  padding: 40px 0;
+  position: relative;
 }
 
 .header-container .banner-title h1{
-  padding: 30px 0;
   margin: 0;
   font-size: 16px;
   font-family: 'DINPro-Medium';
   text-transform: uppercase;
+  line-height: 0;
 }
 
 .header-container .banner-title:after{
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 17px 15px 0 15px;
-  border-color: #000000 transparent transparent;
-  display: block;
-  margin: 0 auto;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #000;
+    content: "";
+    display: block;
+    height: 0;
+    left: calc(50% - 10px);
+    position: absolute;
+    top: 80px;
+    width: 0;
 }
 
-.header-container .subtitle{
-  margin-top: 70px;
+.header-container .description{
+  margin: 70px auto 0;
   text-align: center;
-  text-transform: uppercase;
-}
-
-.header-container .subtitle h2{
-  font-size: 18px;
-  font-family: 'DINPro-Bold';
-}
-
-.header-container .subtitle p{
-  display: block;
-  margin: 32px auto 0;
   font-size: 18px;
   font-family: 'DINPro-Regular';
   max-width: 960px;
+}
 
+.header-container .description p{
+  margin-bottom: 0;
+}
+
+.header-container .description strong{
+  display: block;
+  margin-bottom: 32px;
+  text-transform: uppercase;
+  font-family: 'DINPro-Bold';
 }
 
 .breadcrumb {
