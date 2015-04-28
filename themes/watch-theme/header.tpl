@@ -101,7 +101,6 @@
 				</header>
 
 				<!-- Header pour une page catégorie -->
-
 				{if isset($category)}
 					{if $category->id AND $category->active}
 						<!-- Si la catégorie contient des sous-catégories, on affiche le bandeau noir en guise de header -->
@@ -117,7 +116,7 @@
 					        {/if}
 							
 						<!-- Sinon, on affiche l'image associée à la catégorie -->
-				        {else}
+				        {elseif $page_name != 'product'}
 				            <div class="content_scene_cat_bg">
 			                    <span class="category-name">
 			                        {strip}
