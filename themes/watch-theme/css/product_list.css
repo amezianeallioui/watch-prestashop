@@ -441,8 +441,6 @@ ul.product_list.list > li .right-block .right-block-content .content_price {
 }
 ul.product_list.list > li .right-block .right-block-content .content_price span {
   display: inline-block;
-  margin-top: -4px;
-  margin-bottom: 14px;
 }
 ul.product_list.list > li .right-block .right-block-content .content_price span.old-price {
   margin-right: 8px;
@@ -461,7 +459,6 @@ ul.product_list.list > li .right-block .right-block-content .button-container .b
 }
 @media (min-width: 992px) {
   ul.product_list.list > li .right-block .right-block-content .button-container .btn {
-    float: left;
     clear: both;
   }
 }

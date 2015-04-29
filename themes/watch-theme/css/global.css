@@ -7020,6 +7020,16 @@ textarea {
   background: white;
 }
 
+
+/* Message : "pas de produits dans cette catégorie" */
+.columns-container .empty-category{
+  display: block;
+  margin: 40px 0;
+  text-align: center;
+  font-family: 'DINPro-Bold';
+  font-size: 16px;
+}
+
 #columns {
   position: relative;
   padding-bottom: 50px;
@@ -7550,6 +7560,8 @@ span.exclusive {
   width: 100%;
   border-color: rgba(0,0,0,.5);
   transition: all .3s ease;
+  display: block;
+  margin-top: 15px;
 }
 .button.lnk_view span {
   display: block;
@@ -7557,6 +7569,8 @@ span.exclusive {
   background: rgba(0,0,0,.5);
   background: rgba(0,0,0,.5);
   padding: 10px 14px;
+  text-align: center;
+  width: 100%;
 }
 .button.lnk_view:hover span {
   filter: none;
@@ -8826,7 +8840,7 @@ div.star a:hover {
 }
 
 .header-container .description{
-  margin: 70px auto 0;
+  margin: 70px auto 40px;
   text-align: center;
   font-size: 18px;
   font-family: 'DINPro-Regular';
@@ -10641,4 +10655,8 @@ h2, .h2 {
 }
 #center_column {
   text-align: center;
+}
+
+.wrapperImgFooter{
+  margin-top: 30px;
 }

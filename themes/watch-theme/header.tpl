@@ -102,38 +102,20 @@
 
 				<!-- Header pour une page catégorie -->
 				{if isset($category)}
-					{if $category->id AND $category->active}
+					{if $category->id AND $category->active AND $page_name=="category"}
 						<!-- Si la catégorie contient des sous-catégories, on affiche le bandeau noir en guise de header -->
-						{if isset($subcategories)}
+						
 							<div class="banner-title">
 								<h1 class="category-title">Catégorie : {$category->name|escape:'html':'UTF-8'}{if isset($categoryNameComplement)}&nbsp;{$categoryNameComplement|escape:'html':'UTF-8'}{/if}</h1>
 							</div>
-							
-					        {if $category->description}
-								<div class="description">
-						           	{$category->description}
-						        </div>
-					        {/if}
-							
+
 						<!-- Sinon, on affiche l'image associée à la catégorie -->
-				        {elseif $page_name != 'product'}
-				            <div class="content_scene_cat_bg">
-			                    <span class="category-name">
-			                        {strip}
-			                            {$category->name|escape:'html':'UTF-8'}
-			                            {if isset($categoryNameComplement)}
-			                                {$categoryNameComplement|escape:'html':'UTF-8'}
-			                            {/if}
-			                        {/strip}
-			                    </span>
-			                    {if $category->id_image}
-			                   		<img class="subcategory-image" src="{$link->getCatImageLink($category->link_rewrite, $category->id_image, 'category_default')|escape:'html':'UTF-8'}">
-			                    {/if}
-				            </div>
-					        {if $category->description}
-					       	 	{$category->description}
-					        {/if}
-				        {/if}
+				       
+				        {if $category->description}
+							<div class="description">
+						        {$category->description}
+						    </div>
+					    {/if}
 				    {/if}
 				{/if}
 			</div>

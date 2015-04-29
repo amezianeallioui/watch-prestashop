@@ -34,7 +34,7 @@
     			{foreach from=$subcategories item=subcategory}
     				<li class="col-xs-12 col-sm-4">
     					<a class="subcategory" href="{$link->getCategoryLink($subcategory.id_category, $subcategory.link_rewrite)|escape:'html':'UTF-8'}" title="{$subcategory.name|escape:'html':'UTF-8'}" >
-                        
+
                             <img alt="image catégorie" src="{if $subcategory.id_image}{$link->getCatImageLink($subcategory.link_rewrite, $subcategory.id_image)|escape:'html':'UTF-8'}{else}{$img_cat_dir}{$lang_iso}-default-medium_default.jpg{/if}">
 
                             <h3>{$subcategory.name|truncate:25:'...'|escape:'html':'UTF-8'}</h3>
@@ -51,7 +51,6 @@
 		{else}
 
             {if $products}
-                { include file="$tpl_dir./category-count.tpl" }
     			<div class="content_sortPagiBar clearfix">
                 	<div class="sortPagiBar row clearfix">
                 		{include file="./product-sort.tpl"}
@@ -70,7 +69,7 @@
     				</div>
     			</div>
     		{else}
-                <p class="alert alert-warning">{l s='There are no products in this category.'}</p>
+                <p class="empty-category">Il n'y a pas encore de produits dans cette catégorie !</p>
             {/if}
         {/if}
 	{elseif $category->id}
