@@ -6981,22 +6981,22 @@ a:hover {
 
 @font-face {
   font-family: 'DINPro-Bold';
-  src: url('font/DINPro-Bold.eot');
-  src: url('font/DINPro-Bold.eot?#iefix') format('embedded-opentype'), url('../font/DINPro-Bold.woff2') format('woff2'), url('../font/DINPro-Bold.woff') format('woff'), url('../font/DINPro-Bold.ttf') format('truetype'), url('../font/DINPro-Bold.svg#DINPro-Bold') format('svg');
+  src: url('../font/DINPro-Bold.eot');
+  src: url('../font/DINPro-Bold.eot?#iefix') format('embedded-opentype'), url('../font/DINPro-Bold.woff2') format('woff2'), url('../font/DINPro-Bold.woff') format('woff'), url('../font/DINPro-Bold.ttf') format('truetype'), url('../font/DINPro-Bold.svg#DINPro-Bold') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'DINPro-Medium';
-  src: url('font/DINPro-Medium.eot');
-  src: url('font/DINPro-Medium.eot?#iefix') format('embedded-opentype'), url('../font/DINPro-Medium.woff2') format('woff2'), url('../font/DINPro-Medium.woff') format('woff'), url('../font/DINPro-Medium.ttf') format('truetype'), url('../font/DINPro-Medium.svg#DINPro-Medium') format('svg');
+  src: url('../font/DINPro-Medium.eot');
+  src: url('../font/DINPro-Medium.eot?#iefix') format('embedded-opentype'), url('../font/DINPro-Medium.woff2') format('woff2'), url('../font/DINPro-Medium.woff') format('woff'), url('../font/DINPro-Medium.ttf') format('truetype'), url('../font/DINPro-Medium.svg#DINPro-Medium') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'DINPro-Regular';
-  src: url('font/DINPro-Regular.eot');
-  src: url('font/DINPro-Regular.eot?#iefix') format('embedded-opentype'), url('../font/DINPro-Regular.woff2') format('woff2'), url('../font/DINPro-Regular.woff') format('woff'), url('../font/DINPro-Regular.ttf') format('truetype'), url('../font/DINPro-Regular.svg#DINPro-Regular') format('svg');
+  src: url('../font/DINPro-Regular.eot');
+  src: url('../font/DINPro-Regular.eot?#iefix') format('embedded-opentype'), url('../font/DINPro-Regular.woff2') format('woff2'), url('../font/DINPro-Regular.woff') format('woff'), url('../font/DINPro-Regular.ttf') format('truetype'), url('../font/DINPro-Regular.svg#DINPro-Regular') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -7023,6 +7023,16 @@ textarea {
 
 .columns-container {
   background: white;
+}
+
+
+/* Message : "pas de produits dans cette catégorie" */
+.columns-container .empty-category{
+  display: block;
+  margin: 40px 0;
+  text-align: center;
+  font-family: 'DINPro-Bold';
+  font-size: 16px;
 }
 
 #columns {
@@ -7556,6 +7566,8 @@ span.exclusive {
   width: 100%;
   border-color: rgba(0,0,0,.5);
   transition: all .3s ease;
+  display: block;
+  margin-top: 15px;
 }
 .button.lnk_view span {
   display: block;
@@ -7563,6 +7575,8 @@ span.exclusive {
   background: rgba(0,0,0,.5);
   background: rgba(0,0,0,.5);
   padding: 10px 14px;
+  text-align: center;
+  width: 100%;
 }
 .button.lnk_view:hover span {
   filter: none;
@@ -8799,6 +8813,54 @@ div.star a:hover {
 
 .header-container {
   background: white;
+}
+
+.header-container .banner-title{
+  background-color: #000;
+  color: white;
+  text-align: center;  
+  padding: 40px 0;
+  position: relative;
+}
+
+.header-container .banner-title h1{
+  margin: 0;
+  font-size: 16px;
+  font-family: 'DINPro-Medium';
+  text-transform: uppercase;
+  line-height: 0;
+}
+
+.header-container .banner-title:after{
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #000;
+    content: "";
+    display: block;
+    height: 0;
+    left: calc(50% - 10px);
+    position: absolute;
+    top: 80px;
+    width: 0;
+}
+
+.header-container .description{
+  margin: 70px auto 40px;
+  text-align: center;
+  font-size: 18px;
+  font-family: 'DINPro-Regular';
+  max-width: 960px;
+}
+
+.header-container .description p{
+  margin-bottom: 0;
+}
+
+.header-container .description strong{
+  display: block;
+  margin-bottom: 32px;
+  text-transform: uppercase;
+  font-family: 'DINPro-Bold';
 }
 
 .breadcrumb {
@@ -10595,4 +10657,8 @@ h2, .h2 {
 }
 #center_column {
   text-align: center;
+}
+
+.wrapperImgFooter{
+  margin-top: 30px;
 }

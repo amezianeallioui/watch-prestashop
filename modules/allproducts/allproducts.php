@@ -33,9 +33,9 @@ class AllProducts extends Module
 		//message d'avertissement en cas de désinstallation
 		$this->confirmUninstall = $this->l('Attention, vous allez supprimer le module !');
 
-		//On test l'existence d'une variable de configuration propre au module
-		// if(!Configuration::get('ALLPRODUCTS_COLOR'))
-		// $this->warning = $this->l('La configuration 1 n\'est pas valide.');
+		//On teste l'existence d'une variable de configuration propre au module
+		if(!Configuration::get('ALLPRODUCTS_NUMBER') || !Configuration::get('ALLPRODUCTS_ONLY_ACTIVE'))
+		$this->warning = $this->l('La configuration n\'est pas valide.');
 	}
 	
 	//methode appelée à l'installation du module
@@ -49,11 +49,10 @@ class AllProducts extends Module
 		//On greffe le module à quelques hook, on crée une config et on lance l'installation classique
 		// Regarde si le module a bien été installé
 		if(!parent::install() 
-			// || !$this->registerHook('home') 
 			|| !$this->registerHook('header') 
 			|| !$this->registerHook('displayHomeTab')
 			|| !$this->registerHook('displayHomeTabContent')
-			|| !Configuration::updateValue('ALLPRODUCTS_COLOR', 1000)
+			|| !Configuration::updateValue('ALLPRODUCTS_ONLY_ACTIVE', true)
 		)	
 			return false; // si non, on renvoie false
 
@@ -66,7 +65,8 @@ class AllProducts extends Module
 				
 		//On ne degreffe pas, mais on supprime les configs
 		if (!parent::uninstall() ||
-			!Configuration::deleteByName('ALLPRODUCTS_COLOR')
+			!Configuration::deleteByName('ALLPRODUCTS_NUMBER') ||
+			!Configuration::deleteByName('ALLPRODUCTS_ONLY_ACTIVE')
 		)
 			return false;
 
@@ -77,7 +77,6 @@ class AllProducts extends Module
 	public function hookHeader()
 	{
 		$this->context->controller->addCSS(_THEME_CSS_DIR_.'product_list.css');
-		$this->context->controller->addCSS($this->_path.'allproducts.css', 'all');
 	}
 
 	// Menu 
@@ -95,8 +94,6 @@ class AllProducts extends Module
 		return $this->display(__FILE__, 'allproducts-home.tpl');
 	}
 
-
-	
 	//methode pour ajouter une page de configuration
 	public function getContent()
 	{
@@ -105,14 +102,19 @@ class AllProducts extends Module
 		//traitement du formulaire
 		if (Tools::isSubmit('submit'.$this->name))
 		{
-			$my_config = strval(Tools::getValue('ALLPRODUCTS_COLOR'));
-			if (!$my_config
-				|| empty($my_config)
-				|| !Validate::isGenericName($my_config))
+			$number_of_products = strval(Tools::getValue('ALLPRODUCTS_NUMBER'));
+			$only_active = strval(Tools::getValue('ALLPRODUCTS_ONLY_ACTIVE'));
+
+			if(
+				!$only_active
+				|| empty($only_active)
+				|| !Validate::isGenericName($only_active)
+			)
 			$output .= $this->displayError($this->l('Invalid Configuration value'));
 			else
 			{
-				Configuration::updateValue('ALLPRODUCTS_COLOR', $my_config);
+				Configuration::updateValue('ALLPRODUCTS_NUMBER', $number_of_products);
+				Configuration::updateValue('ALLPRODUCTS_ONLY_ACTIVE', $only_active);
 				$output .= $this->displayConfirmation($this->l('Settings updated'));
 			}
 		}
@@ -126,24 +128,43 @@ class AllProducts extends Module
 		//On recupere la langue par defaut
 		$default_lang = (int)Configuration::get('PS_LANG_DEFAULT');
 
+		$options = array(
+		  array(
+		    'id_option' => 1,
+		    'name' => $this->l('Enabled')
+		  ),
+		  array(
+		    'id_option' => 2,
+		    'name' => $this->l('Disabled')
+		  )
+		);
+
 		//On cree un tableau avec les champs du formulaire
 		$fields_form[0]['form'] = array(
 			'legend' => array(
-				// 'title' => $this->l('Configuration du module'),
 				'title' => 'Configuration du module',
 			),
 			'input' => array(
 				array(
 					'type' => 'text',
-					// 'label' => $this->l('Configuration value'),
-					'label' => 'Nombre de produits à afficher',
-					'name' => 'ALLPRODUCTS_COLOR',
+					'label' => 'Nombre maximum de produits à afficher',
+					'name' => 'ALLPRODUCTS_NUMBER',
 					'size' => 5,
-					'required' => true
+				),
+				array(
+				  'type' => 'select',                              
+				  'label' => 'Afficher uniquement les produits activés',        
+				  'name' => 'ALLPRODUCTS_ONLY_ACTIVE',                   
+				  'required' => true,                             
+				  'options' => array(
+				    'query' => $options,                          
+				    'id' => 'id_option',                          
+				    'name' => 'name'                              
+				  )
 				)
 			),
 			'submit' => array(
-				'title' => $this->l('Enregistrer'),
+				'title' => $this->l('Save'),
 				'class' => 'button'
 			)
 		);
@@ -178,8 +199,9 @@ class AllProducts extends Module
 			)
 		);
 
-		//On recupere la valeur actuelle
-		$helper->fields_value['ALLPRODUCTS_COLOR'] = Configuration::get('ALLPRODUCTS_COLOR');
+		//On recupere les valeurs actuelles pour la configuration (nombre de produits à afficher + affichage des produits uniquement activés)
+		$helper->fields_value['ALLPRODUCTS_NUMBER'] = Configuration::get('ALLPRODUCTS_NUMBER');
+		$helper->fields_value['ALLPRODUCTS_ONLY_ACTIVE'] = Configuration::get('ALLPRODUCTS_ONLY_ACTIVE');
 
 		//on genere le formulaire
 		return $helper->generateForm($fields_form);
@@ -193,27 +215,27 @@ class AllProducts extends Module
 
 	public function getAllProducts()
 	{
-
+		// Paramètres pour la fonction permettant de récupérer tous les produits
 		$context = Context::getContext();
-
-		$id_lang = $context->language->id;
-
+		$id_lang = $context->language->id; // id de la langue active
 		$start = 0;
-
-		Configuration::get('ALLPRODUCTS_COLOR') ? $limit = Configuration::get('ALLPRODUCTS_COLOR') : $limit = 1000;
-
+		// On regarde si un nombre de produits à afficher a été indiqué
+		$limit = Configuration::get('ALLPRODUCTS_NUMBER') ? Configuration::get('ALLPRODUCTS_NUMBER') : 0;
 		$order_by = 'id_product';
 		$order_way = 'ASC';
 		$id_category = false;
-		$only_active = false;
+		// Afficher uniquement les produits activés ou non
 
-		$result = Product::getProducts($id_lang, $start, $limit, $order_by, $order_way, $id_category,
+		$only_active = Configuration::get('ALLPRODUCTS_ONLY_ACTIVE') == 1 ? true : false;
+
+		// On récupère tous les produits
+		$products = Product::getProducts($id_lang, $start, $limit, $order_by, $order_way, $id_category,
 		$only_active, null);
 
-		$result = Product::getProductsProperties($id_lang, $result);
-		return Product::getProductsProperties($id_lang, $result);
+		// On récupère les propriété pour chaque produit (image, activé ou non)
+		$products = Product::getProductsProperties($id_lang, $products);
 
-
+		return $products;
 	}
 
 }
