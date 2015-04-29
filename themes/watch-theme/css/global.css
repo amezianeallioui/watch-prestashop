@@ -10655,7 +10655,7 @@ div.star.star_hover:after {
 }
 
 header .nav .topHeadMenu a:hover {
-  font-weight: 600 !important;
+  font-family: "DINpro-bold";
 }
 
 
