@@ -30,11 +30,13 @@
 }
 #contact-link a {
   display: block;
-  font-weight: bold;
-  text-shadow: 1px 1px rgba(0, 0, 0, 0);
+  font-weight: normal;
   cursor: pointer;
   padding-left: 10px;
   padding-right: 10px;
+}
+#contact-link a:hover {
+  font-weight:600;
 }
 @media (max-width: 479px) {
   #contact-link a {

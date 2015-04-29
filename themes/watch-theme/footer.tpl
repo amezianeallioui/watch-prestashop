@@ -25,7 +25,7 @@
 {if !isset($content_only) || !$content_only}
 
 
-					<div class="row">
+					<div class="row clearLeft">
 						<div class="col-sm-4"><img src='{$img_dir}/livraison.jpg' class='imgFooter'/></div>
 						<div class="col-sm-4"><img src='{$img_dir}/renvoi.jpg' class='imgFooter'/></div>
 						<div class="col-sm-4"><img src='{$img_dir}/promotion.jpg' class='imgFooter'/></div>

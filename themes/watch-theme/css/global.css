@@ -20,6 +20,11 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
+.clearLeft {
+  clear:left;
+  margin-top:50px;
+}
+
 html {
   line-height: 1;
 }
@@ -7053,13 +7058,14 @@ header .nav {
   margin:10px 0;
 }
 header .nav .topHeadMenu a {
-  color: #333;
+  color: black;
   text-transform: uppercase;
   padding-bottom: 0;
   font-size: 14px;
   padding-top: 0;
   height: 88px;
   line-height: 88px;
+  font-weight: normal;
 }
 header .nav .row {
   margin: 0px;
@@ -7676,9 +7682,8 @@ table.table_block td {
 }
 
 .price-percent-reduction {
-  background: #f13340;
-  border: 1px solid #d02a2c;
-  font: 600 21px/24px "Open Sans", sans-serif;
+  background: black;
+  font: normal 21px "DINpro-regular";
   color: white;
   padding: 0 5px 0 3px;
   display: inline-block;
@@ -10581,12 +10586,9 @@ div.star.star_hover:after {
 }
 
 header .nav .topHeadMenu a:hover {
-  color: blue;
+  font-weight: 600;
 }
 
-
-.last-line {
-}
 
 h2, .h2 {
   font-size: 27px;
