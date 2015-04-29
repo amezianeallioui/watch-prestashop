@@ -402,7 +402,9 @@
 {if (isset($quantity_discounts) && count($quantity_discounts) > 0)}
 			<!-- quantity discount -->
 			<section class="page-product-box">
-				<h3 class="page-product-heading">{l s='Volume discounts'}</h3>
+				<div class="titleProductPage">
+					<h3 class="page-product-heading">{l s='Volume discounts'}</h3>
+				</div>
 				<div id="quantityDiscount">
 					<table class="std table-product-discounts">
 						<thead>
@@ -454,7 +456,9 @@
 		{if isset($features) && $features}
 			<!-- Data sheet -->
 			<section class="page-product-box">
-				<h3 class="page-product-heading">{l s='Data sheet'}</h3>
+				<div class="titleProductPage">
+					<h3 class="page-product-heading">{l s='Data sheet'}</h3>
+				</div>
 				<table class="table-data-sheet">
 					{foreach from=$features item=feature}
 					<tr class="{cycle values="odd,even"}">
@@ -471,7 +475,9 @@
 		{if $product->description}
 			<!-- More info -->
 			<section class="page-product-box">
-				<h3 class="page-product-heading">{l s='More info'}</h3>{/if}
+				<div class="titleProductPage">
+					<h3 class="page-product-heading">{l s='More info'}</h3>{/if}
+				</div>
 				{if isset($product) && $product->description}
 					<!-- full description -->
 					<div  class="rte">{$product->description}</div>
@@ -480,7 +486,9 @@
 		{/if}
 		{if isset($packItems) && $packItems|@count > 0}
 		<section id="blockpack">
-			<h3 class="page-product-heading">{l s='Pack content'}</h3>
+			<div class="titleProductPage">
+				<h3 class="page-product-heading">{l s='Pack content'}</h3>
+			</div>
 			{include file="$tpl_dir./product-list.tpl" products=$packItems}
 		</section>
 		{/if}
@@ -493,7 +501,9 @@
 		{if isset($accessories) && $accessories}
 			<!--Accessories -->
 			<section class="page-product-box">
-				<h3 class="page-product-heading">{l s='Accessories'}</h3>
+				<div class="titleProductPage">
+					<h3 class="page-product-heading">{l s='Accessories'}</h3>
+				</div>
 				<div class="block products_block accessories-block clearfix">
 					<div class="block_content">
 						<ul id="bxslider" class="bxslider clearfix">
@@ -549,7 +559,9 @@
 			{if isset($attachments) && $attachments}
 			<!--Download -->
 			<section class="page-product-box">
-				<h3 class="page-product-heading">{l s='Download'}</h3>
+				<div class="titleProductPage">
+					<h3 class="page-product-heading">{l s='Download'}</h3>
+				</div>
 				{foreach from=$attachments item=attachment name=attachements}
 					{if $smarty.foreach.attachements.iteration %3 == 1}<div class="row">{/if}
 						<div class="col-lg-4">
@@ -569,7 +581,9 @@
 			{if isset($product) && $product->customizable}
 			<!--Customization -->
 			<section class="page-product-box">
-				<h3 class="page-product-heading">{l s='Product customization'}</h3>
+				<div class="titleProductPage">
+					<h3 class="page-product-heading">{l s='Product customization'}</h3>
+				</div>
 				<!-- Customizable products -->
 				<form method="post" action="{$customizationFormTarget}" enctype="multipart/form-data" id="customizationForm" class="clearfix">
 					<p class="infoCustomizable">

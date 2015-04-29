@@ -23,4 +23,6 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
-<h3 id="#idTab5" class="idTabHrefShort page-product-heading">{l s='Reviews' mod='productcomments'}</h3> 
+<div class="titleProductPage">
+	<h3 id="#idTab5" class="idTabHrefShort page-product-heading">{l s='Reviews' mod='productcomments'}</h3> 
+</div>
