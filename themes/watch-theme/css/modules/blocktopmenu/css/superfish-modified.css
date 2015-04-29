@@ -78,7 +78,7 @@
 }
 .sf-menu > li.sfHover > a,
 .sf-menu > li > a:hover, .sf-menu > li.sfHoverForce > a {
-  color: blue;
+  font-weight:: 600 !important;
 }
 
 .sf-menu li li li a {
