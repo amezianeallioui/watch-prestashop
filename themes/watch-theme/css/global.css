@@ -7182,10 +7182,14 @@ p.info-account {
   white-space: normal;
   display: inline-block;
   padding: 6px 10px;
+  float: left;
+ 
 }
 
 label {
   color: #333333;
+  float: left;
+  margin-right: 20px;
 }
 label.required:before {
   content: "*";
@@ -7362,25 +7366,15 @@ span.exclusive {
 .button.button-medium {
   font-size: 17px;
   line-height: 21px;
-  color: white;
+  text-transform: uppercase;
   padding: 0;
-  font-weight: bold;
-  background: #43b754;
-  background: -moz-linear-gradient(top, #43b754 0%, #41b757 2%, #41b854 4%, #43b756 6%, #41b354 38%, #44b355 40%, #45af55 66%, #41ae53 74%, #42ac52 91%, #41ae55 94%, #43ab54 96%, #42ac52 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #43b754), color-stop(2%, #41b757), color-stop(4%, #41b854), color-stop(6%, #43b756), color-stop(38%, #41b354), color-stop(40%, #44b355), color-stop(66%, #45af55), color-stop(74%, #41ae53), color-stop(91%, #42ac52), color-stop(94%, #41ae55), color-stop(96%, #43ab54), color-stop(100%, #42ac52));
-  background: -webkit-linear-gradient(top, #43b754 0%, #41b757 2%, #41b854 4%, #43b756 6%, #41b354 38%, #44b355 40%, #45af55 66%, #41ae53 74%, #42ac52 91%, #41ae55 94%, #43ab54 96%, #42ac52 100%);
-  background: -o-linear-gradient(top, #43b754 0%, #41b757 2%, #41b854 4%, #43b756 6%, #41b354 38%, #44b355 40%, #45af55 66%, #41ae53 74%, #42ac52 91%, #41ae55 94%, #43ab54 96%, #42ac52 100%);
-  background: -ms-linear-gradient(top, #43b754 0%, #41b757 2%, #41b854 4%, #43b756 6%, #41b354 38%, #44b355 40%, #45af55 66%, #41ae53 74%, #42ac52 91%, #41ae55 94%, #43ab54 96%, #42ac52 100%);
-  background: linear-gradient(to bottom, #43b754 0%, #41b757 2%, #41b854 4%, #43b756 6%, #41b354 38%, #44b355 40%, #45af55 66%, #41ae53 74%, #42ac52 91%, #41ae55 94%, #43ab54 96%, #42ac52 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#43b754', endColorstr='#42ac52',GradientType=0 );
-  border: 1px solid;
-  border-color: #399a49 #247f32 #1a6d27 #399a49;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  -ms-border-radius: 0;
-  -o-border-radius: 0;
-  border-radius: 0;
-}
+  border: 3px solid #000;
+  background: #000;
+  color: #FFF;
+  -moz-transition: all 0.25s ease-in-out;
+	-webkit-transition: all 0.25s ease-in-out;
+	-o-transition: all 0.25s ease-in-out;
+	transition: all 0.25s ease-in-out;}
 .button.button-medium span {
   display: block;
   border: 1px solid;
@@ -7415,34 +7409,26 @@ span.exclusive {
   }
 }
 .button.button-medium:hover {
-  background: #3aa04c;
-  background: -moz-linear-gradient(top, #3aa04c 0%, #3aa04a 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3aa04c), color-stop(100%, #3aa04a));
-  background: -webkit-linear-gradient(top, #3aa04c 0%, #3aa04a 100%);
-  background: -o-linear-gradient(top, #3aa04c 0%, #3aa04a 100%);
-  background: -ms-linear-gradient(top, #3aa04c 0%, #3aa04a 100%);
-  background: linear-gradient(to bottom, #3aa04c 0%, #3aa04a 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3aa04c', endColorstr='#3aa04a',GradientType=0 );
-  border-color: #196f28 #399a49 #399a49 #258033;
+  border: 3px solid #000;
+  background: #FFF;
+  color: #000;
 }
 
 .button.button-medium.exclusive {
-  border-color: #db8600 #d98305 #c86d26 #d98305;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fdaa02), color-stop(100%, #fe9702));
-  background-image: -webkit-linear-gradient(top, #fdaa02, #fe9702);
-  background-image: -moz-linear-gradient(top, #fdaa02, #fe9702);
-  background-image: -o-linear-gradient(top, #fdaa02, #fe9702);
-  background-image: linear-gradient(top, #fdaa02, #fe9702);
+  margin-top: 45px;
+  border: 3px solid #000;
+  background: #000;
+  color: #FFF;
+  -moz-transition: all 0.25s ease-in-out;
+	-webkit-transition: all 0.25s ease-in-out;
+	-o-transition: all 0.25s ease-in-out;
+	transition: all 0.25s ease-in-out;
 }
-.button.button-medium.exclusive span {
-  border-color: #fec133 #febc33 #feb233 #febc33;
-}
+
 .button.button-medium.exclusive:hover {
-  background: #f89609;
-  border-color: #a6550c #ba6708 #db8600 #ba6708;
-}
-.button.button-medium.exclusive:hover span {
-  border-color: #fec133;
+  border: 3px solid #000;
+  background: #FFF;
+  color: #000;
 }
 
 .link-button {
@@ -8187,7 +8173,7 @@ table.table_block td {
 }
 
 .page-subheading {
-  font-family: "Open Sans", sans-serif;
+  font-family: "DinPro-Bold";
   font-weight: 600;
   text-transform: uppercase;
   color: #555454;
@@ -8689,6 +8675,7 @@ ul.step li.step_todo span {
     background: url(../img/order-step-current.png) right 0 no-repeat;
   }
 }
+/*
 ul.step li.step_done {
   border-color: #666666 #5f5f5f #292929 #5f5f5f;
   background: #727171;
@@ -8699,13 +8686,14 @@ ul.step li.step_done {
   background: -ms-linear-gradient(top, #727171 0%, #666666 100%);
   background: linear-gradient(to bottom, #727171 0%, #666666 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#727171', endColorstr='#666666',GradientType=0);
-}
+} */
 ul.step li.step_done a {
   color: white;
   text-shadow: 1px 1px rgba(0, 0, 0, 0.3);
   border: 1px solid;
   border-color: #8b8a8a;
 }
+
 @media (min-width: 992px) {
   ul.step li.step_done a {
     padding-left: 38px;
@@ -9666,6 +9654,7 @@ table#cart_summary .gift-icon {
 .order_carrier_content {
   line-height: normal;
   padding-bottom: 16px;
+  font-family: "DinPro-Regular"
 }
 .order_carrier_content .carrier_title {
   font-weight: bold;
@@ -10671,5 +10660,113 @@ h2, .h2 {
 }
 
 
+/* CART */
+
+.cart_navigation .standard-checkout{
+	background: #000;
+	border: 3px solid #000;
+	font-family: "DinPro-Medium";
+	text-transform: uppercase;
+	-moz-transition: all 0.25s ease-in-out;
+	-webkit-transition: all 0.25s ease-in-out;
+	-o-transition: all 0.25s ease-in-out;
+	transition: all 0.25s ease-in-out;
+	
+}
+
+.cart_total_price{
+	text-transform: uppercase;
+}
+
+.cart_navigation .standard-checkout:hover{
+	
+	background: #FFF;
+	color: #000;
+	border: 3px solid #000;
+}
+
+#cart_summary{
+	font-family: "DinPro-Medium";	
+}
+
+.price, .text-right, #cart_summary tbody td.cart_unit, #cart_summary tbody td.cart_total{
+	text-align: center;
+}
+
+ .page-heading, .page-heading span.heading-counter{
+	 font-family: "DinPro-Bold";
+	 text-align: center;
+	 color: #000;
+ }
+
+.cart_navigation .button-exclusive{
+	font-family: "DinPro-Regular";
+	color: #000;
+}
+
+#cart_summary tbody td.cart_avail span {
+	background-color: #FFF;
+	color :#9fbb92;
+	text-transform: uppercase;
+	border: 4px solid #9fbb92;
+}
+
+#cart_summary .item, #cart_summary .item{
+	text-transform: uppercase;
+	background: #000;
+	color: #FFF;
+	border: none;
+	text-align: center;
+}
+
+th.cart_product.first_item {
+	text-transform: uppercase;
+	background: #000;
+	color: #FFF;
+	border: none;
+	text-align: center;
+}
+
+th.cart_delete.last_item{
+	background: #000;
+	border: none;
+}
+
+#cart_summary tfoot td.total_price_container span{font-family: "DinPro-Bold";}
+#cart_summary tfoot td#total_price_container {font-family: "DinPro-Bold"; color: #FFF; background: #000; border:1px solid #000}
+
+.button.button-medium span{
+	border: none;
+	border-radius: 0px;
+}
+
+ul.step {font-family: "DinPro-Bold";text-transform: uppercase;}
+
+#order_step .step_current span{
+	background-color: #000;
+	color: #FFF;
+	border: 1px solid #000;
+	text-shadow: none;
+} 
+
+ul.step li.step_done{
+	background-color: #000;
+	color: #FFF;
+	border: 1px solid #000;
+	text-shadow: none;	
+}
+
+ul.step li.step_current {border: 1px solid #9A9A9A;}
+
+ul.step li.step_todo{
+	background: #FFF;
+	
+}
+.form-content p{
+	text-align: left;
+}
+
+#create-account_form p{
+text-align: left;}
 
 
